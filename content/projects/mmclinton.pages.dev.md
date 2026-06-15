@@ -1,12 +1,14 @@
 +++
-title = "this site"
+title = "mmclinton.pages.dev"
 date = 2026-06-10
-description = "What you're looking at — Zola, Nix, zero trackers."
+description = "What you're looking at — Zola, Nix, zero trackers"
 [extra]
 tags = ["zola", "nix"]
-repo = "https://codeberg.org/mmc/website"
+repo = "https://codeberg.org/mmc/mmc-6wo"
 lang = "Web"
 +++
+
+## About
 
 This website. A Zola static site, reproducible through a Nix flake, deployed to
 Cloudflare Pages from Codeberg. Math is prerendered with KaTeX, code highlighting

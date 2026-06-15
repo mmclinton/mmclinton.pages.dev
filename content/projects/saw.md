@@ -1,13 +1,17 @@
 +++
 title = "saw"
 date = 2026-01-12
-description = "A structured-log slicer for grep-weary afternoons."
+description = "A terminal workbench for running static analysis"
 [extra]
-tags = ["go", "logs"]
+tags = ["rust", "tui", "analysis", "nix"]
 repo = "https://codeberg.org/mmc/saw"
-lang = "Go"
+lang = "Rust"
 +++
 
-`saw` reads JSON logs on stdin and lets you filter, project, and pretty-print
-fields without remembering `jq` incantations. Built for tailing a noisy service
-and seeing only what matters.
+## About 
+
+A terminal-first workbench for running static analysis on a repository: discover the available analyzers for your language, run them, and review normalized findings in one place. Built in Rust, language by language.
+
+## Status
+
+Early development (the Ratatui TUI is a three-tab workbench — home, analysis, tools — that triggers analyzer runs interactively).
