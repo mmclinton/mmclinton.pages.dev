@@ -7,4 +7,4 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 ./scripts/build.sh
-npx -y wrangler pages deploy public --project-name mmc-6wo --branch=main
+npx -y wrangler pages deploy public --project-name mmc --branch=main
