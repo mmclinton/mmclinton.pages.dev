@@ -10,12 +10,13 @@ Source on Codeberg, built with Nix, deployed to **Cloudflare Pages** via Direct 
 - Create an **API token**: Cloudflare dashboard → My Profile → API Tokens → Create Token →
   permission **Account › Cloudflare Pages › Edit**. Save the token.
 - Note your **Account ID** (Workers & Pages → right sidebar).
-- Create the project (also confirms the name `mmc` is free — if taken, pick `mmc-dev`
-  and update `base_url` in `config.toml` + `--project-name` in `scripts/deploy.sh` and
-  `.forgejo/workflows/deploy.yml`):
+- Create the project. The name becomes `<name>.pages.dev` and must be globally unique;
+  `mmc` was taken, so the project is **`mmc-6wo`** (→ `mmc-6wo.pages.dev`). If you ever
+  change the project name, update `base_url` in `config.toml` + `--project-name` in
+  `scripts/deploy.sh` and `.forgejo/workflows/deploy.yml` to match.
 
   ```fish
-  nix develop --command npx -y wrangler pages project create mmc --production-branch main
+  nix develop --command npx -y wrangler pages project create mmc-6wo --production-branch main
   ```
 
 ### 2. First (bootstrap) deploy — validate it live
@@ -25,7 +26,7 @@ nix develop --command npx -y wrangler login   # or: set -x CLOUDFLARE_API_TOKEN 
 nix develop --command ./scripts/deploy.sh
 ```
 
-→ live at `https://mmc.pages.dev`.
+→ live at `https://mmc-6wo.pages.dev`.
 
 ### 3. Codeberg repo + push
 

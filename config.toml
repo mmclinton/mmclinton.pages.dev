@@ -1,6 +1,7 @@
 # Zola configuration — see https://www.getzola.org/documentation/getting-started/configuration/
-# Production URL. Swap to a custom domain later (then redeploy) if you add one.
-base_url = "https://mmc.pages.dev"
+# Production URL. MUST match the serving origin or assets break (cross-origin +
+# CSP). Swap to a custom domain later (then redeploy) when you add one.
+base_url = "https://mmc-6wo.pages.dev"
 title = "mmc"
 description = "Writing, reading, and things I build."
 
