@@ -43,11 +43,12 @@ value="finished") %} {% if current | length > 0 or finished | length > 0 %}
 {% for book in current %}
 <p class="reading-now">
     <a href="{{ book.permalink | safe }}"><strong>{{ book.title }}</strong></a
-    >{% if book.extra.author %} <span class="reading-author">by {{ book.extra.author }}</span>{% endif %}
+    >{% if book.extra.author %}
+    <span class="reading-author">by {{ book.extra.author }}</span>{% endif %}
 </p>
 {% endfor %} {% if finished | length > 0 %}
 <p class="reading-recent">
-    Recently: {% for book in finished | slice(end=1) %}<a
+    Recently Finished: {% for book in finished | slice(end=1) %}<a
         href="{{ book.permalink | safe }}"
         >{{ book.title }}</a
     >{% if book.extra.rating %}
