@@ -5,8 +5,7 @@ description = "Andy Weir's problem-solving space romp."
 [extra]
 author = "Andy Weir"
 status = "finished"
-rating = 4
+rating = 3
 +++
 
-Breezy hard-SF. The engineering-puzzle pacing is fun and the unlikely friendship
-at its center carries the back half.
+Review coming soon ...

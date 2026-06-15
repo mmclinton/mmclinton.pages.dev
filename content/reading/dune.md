@@ -8,5 +8,4 @@ status = "finished"
 rating = 5
 +++
 
-Still the benchmark. The ecology holds up forty years on, and the politics read
-sharper every reread. Worth it for the appendices alone.
+Review coming soon ...

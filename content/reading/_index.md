@@ -1,6 +1,6 @@
 +++
 title = "Reading"
-description = "Books I'm reading and have read, with notes."
+description = "My virtual bookshelf."
 sort_by = "date"
 template = "reading.html"
 page_template = "book.html"
