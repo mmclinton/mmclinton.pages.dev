@@ -5,14 +5,12 @@ on:
 
 jobs:
   deploy:
-    # Requires a self-hosted Forgejo runner registered with this label (Codeberg's
-    # hosted runners are too limited for the Nix build). See DEPLOY.md.
+    # Runs on a self-hosted *host-mode* runner that already has Nix on PATH.
+    # See CI-SETUP.md for the one-time runner setup. (For a Docker-mode runner,
+    # re-add a nix install step, e.g. DeterminateSystems/nix-installer-action.)
     runs-on: self-hosted
     steps:
       - uses: https://github.com/actions/checkout@v4
-
-      # Skip this step if your runner host already has Nix (host-mode runner).
-      - uses: https://github.com/DeterminateSystems/nix-installer-action@main
 
       - name: Build
         run: nix develop --command ./scripts/build.sh
