@@ -11,5 +11,8 @@ result
 # node (build-time katex only)
 /node_modules/
 
+# wrangler local cache
+/.wrangler/
+
 # os
 .DS_Store
