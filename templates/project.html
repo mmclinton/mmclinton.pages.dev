@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} · {{ config.title }}{% endblock title %}
+{% block description %}{{ page.description | default(value=config.description) }}{% endblock description %}
+{% block og_type %}article{% endblock og_type %}
+{% block og_title %}{{ page.title }}{% endblock og_title %}
+
+{% block content %}
+<article class="prose">
+  <h1>{{ page.title }}</h1>
+  {% if page.description %}<p class="muted">{{ page.description }}</p>{% endif %}
+  <p class="card-links project-detail-links">
+    {% if page.extra.repo %}<a href="{{ page.extra.repo }}" rel="noopener">repo ↗</a>{% endif %}
+    {% if page.extra.demo %}<a href="{{ page.extra.demo }}" rel="noopener">demo ↗</a>{% endif %}
+    {% if page.extra.lang %}<span class="lang">{{ page.extra.lang }}</span>{% endif %}
+  </p>
+  {% if page.extra.tags %}
+  <div class="tags">{% for tag in page.extra.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
+  {% endif %}
+  {{ page.content | safe }}
+</article>
+{% endblock content %}

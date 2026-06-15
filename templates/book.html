@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} · {{ config.title }}{% endblock title %}
+{% block description %}{{ page.description | default(value=page.extra.author) | default(value=config.description) }}{% endblock description %}
+{% block og_type %}article{% endblock og_type %}
+{% block og_title %}{{ page.title }}{% endblock og_title %}
+
+{% block content %}
+<article class="prose">
+  <h1>{{ page.title }}</h1>
+  <p class="muted small book-detail-meta">
+    {%- if page.extra.author %}{{ page.extra.author }}{% endif -%}
+    {%- if page.extra.rating %} · <span class="stars" aria-label="{{ page.extra.rating }} out of 5">{% for i in range(end=5) %}{% if i < page.extra.rating %}★{% else %}☆{% endif %}{% endfor %}</span>{% endif -%}
+    {%- if page.extra.status %} · {{ page.extra.status }}{% endif -%}
+    {%- if page.date %} · {{ page.date | date(format="%B %Y") }}{% endif -%}
+  </p>
+  {{ page.content | safe }}
+</article>
+{% endblock content %}

@@ -1,0 +1,608 @@
+// ============================================================================
+//  Personal website — main stylesheet
+//  Design tokens are CSS custom properties so light/dark is a single source of
+//  truth and JS only ever flips [data-theme] on <html>. GNOME/Adwaita palette.
+// ============================================================================
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/Inter.var.woff2") format("woff2");
+}
+
+:root {
+  --bg: #f6f5f4;
+  --surface: #fbfaf9;
+  --ink: #241f31;
+  --muted: #5e5c64;
+  --faint: #9a9996;
+  --rule: #deddda;
+  --accent: #1a5fb4;
+  --accent-hover: #1c71d8;
+  --code-bg: #eeedeb;
+  --selection: #cfe1f6;
+
+  --measure: 42rem; // ~672px content column
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:
+    ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, monospace;
+  --step: 1.6;
+}
+
+:root[data-theme="dark"] {
+  --bg: #1e1e22;
+  --surface: #25252b;
+  --ink: #e3e1de;
+  --muted: #a8a6a0;
+  --faint: #77767b;
+  --rule: #3a3a40;
+  --accent: #78aeed;
+  --accent-hover: #99c1f1;
+  --code-bg: #26262b;
+  --selection: #2c4663;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: var(--step);
+  color: var(--ink);
+  background: transparent; // html paints --bg; the constellation sits between
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  display: flex;
+  flex-direction: column;
+}
+
+::selection {
+  background: var(--selection);
+}
+
+// --- Layout -----------------------------------------------------------------
+.container {
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+main.container {
+  flex: 1 0 auto;
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+}
+
+// --- Typography -------------------------------------------------------------
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.2;
+  font-weight: 600;
+  margin: 2.2rem 0 0.6rem;
+}
+
+h1 {
+  font-weight: 200;
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 2.8rem);
+  letter-spacing: -0.02em;
+  margin-top: 1.5rem;
+}
+
+h2 {
+  font-size: 1.35rem;
+}
+h3 {
+  font-size: 1.1rem;
+}
+
+p,
+ul,
+ol {
+  margin: 0 0 1.1rem;
+}
+
+a {
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--rule);
+  width: 38%;
+  margin: 2.6rem auto;
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--code-bg);
+  padding: 0.12em 0.36em;
+  border-radius: 5px;
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  line-height: 1.5;
+  background: var(--code-bg);
+  padding: 1rem 1.1rem;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+pre code {
+  background: none;
+  padding: 0;
+}
+
+blockquote {
+  margin: 1.4rem 0;
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--rule);
+  color: var(--muted);
+}
+
+.muted {
+  color: var(--muted);
+}
+.small {
+  font-size: 0.82rem;
+}
+
+// --- Header / nav -----------------------------------------------------------
+.site-header {
+  width: 100%;
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: 1.4rem 1.5rem 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.wordmark {
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+.wordmark:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.95rem;
+}
+.site-nav a {
+  color: var(--muted);
+  font-weight: 500;
+}
+.site-nav a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+.site-nav .dot {
+  color: var(--faint);
+}
+
+.theme-toggle,
+.motion-toggle {
+  margin-left: 0.4rem;
+  width: 1.7rem;
+  height: 1.7rem;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.7rem;
+  line-height: 1;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+.theme-toggle:hover,
+.motion-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.theme-toggle .th-dark {
+  display: none;
+}
+:root[data-theme="dark"] .theme-toggle .th-light {
+  display: none;
+}
+:root[data-theme="dark"] .theme-toggle .th-dark {
+  display: inline;
+}
+.motion-toggle .mo-calm {
+  display: none;
+}
+:root[data-motion="calm"] .motion-toggle .mo-full {
+  display: none;
+}
+:root[data-motion="calm"] .motion-toggle .mo-calm {
+  display: inline;
+}
+// The constellation is static under reduced motion, so the toggle is moot.
+@media (prefers-reduced-motion: reduce) {
+  .motion-toggle {
+    display: none;
+  }
+}
+
+// --- Intro / home -----------------------------------------------------------
+.intro {
+  padding-top: 1.5rem;
+}
+.intro .name {
+  margin-bottom: 0.2rem;
+}
+.intro .tagline {
+  font-size: 1.05rem;
+  margin-top: 0;
+}
+
+.section-label {
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 2rem 0 0.6rem;
+}
+
+// --- Lists (posts / books / etc.) ------------------------------------------
+.entry-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.entry-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid transparent;
+}
+.entry-list li a {
+  color: var(--ink);
+  font-weight: 500;
+}
+.entry-list li a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+.entry-list time {
+  color: var(--faint);
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+// --- Prose article ----------------------------------------------------------
+.prose {
+  margin-top: 0.5rem;
+}
+.prose img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.6rem auto;
+  border-radius: 8px;
+}
+
+// --- Footer -----------------------------------------------------------------
+.site-footer {
+  flex-shrink: 0;
+  padding-top: 2rem;
+  padding-bottom: 2.5rem;
+  border-top: 1px solid var(--rule);
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.footer-links {
+  display: flex;
+  gap: 0.55rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  color: var(--muted);
+  font-weight: 500;
+}
+.footer-links .dot {
+  color: var(--faint);
+}
+
+// --- Motion -----------------------------------------------------------------
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+// --- Table of contents (writing posts with >= 3 headings) -------------------
+.toc {
+  margin: 1.4rem 0 2rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  font-size: 0.92rem;
+}
+.toc-label {
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0 0 0.4rem;
+}
+.toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.toc ol ol {
+  padding-left: 1rem;
+  margin-top: 0.2rem;
+}
+.toc li {
+  margin: 0.18rem 0;
+}
+.toc a {
+  color: var(--muted);
+  font-weight: 400;
+}
+.toc a:hover {
+  color: var(--accent);
+}
+
+// --- Prerendered KaTeX ------------------------------------------------------
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.4rem 0;
+}
+
+// --- Reading shelf ----------------------------------------------------------
+.book-list {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+.book-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.book-title {
+  color: var(--ink);
+  font-weight: 500;
+}
+.book-title:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+.book-author {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.book-meta {
+  margin-left: auto;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  white-space: nowrap;
+}
+.stars {
+  color: var(--accent);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+}
+.book-meta time {
+  color: var(--faint);
+  font-size: 0.8rem;
+}
+
+// --- Project cards ----------------------------------------------------------
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+}
+.project-name {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+.project-name a {
+  color: var(--ink);
+}
+.project-name a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+.project-blurb {
+  margin: 0;
+  flex: 1;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+.tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.1rem 0.55rem;
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent);
+}
+.card-links {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin-top: 0.1rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+.card-links .lang {
+  margin-left: auto;
+  color: var(--faint);
+  font-weight: 400;
+}
+.project-detail-links {
+  margin: 0.4rem 0 1rem;
+  padding: 0;
+  border: 0;
+}
+
+// --- Home streams -----------------------------------------------------------
+.tagline-block {
+  max-width: 34em;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+.tagline-block p {
+  margin: 0;
+}
+.stream-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 2rem 0 0.5rem;
+}
+.stream-head .section-label {
+  margin: 0;
+}
+.stream-all {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--faint);
+}
+.stream-all:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+.reading-now {
+  margin: 0.2rem 0;
+}
+.reading-now strong {
+  font-weight: 600;
+}
+.reading-recent {
+  margin: 0.3rem 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.reading-recent a {
+  color: var(--muted);
+  font-weight: 500;
+}
+.reading-recent a:hover {
+  color: var(--accent);
+}
+.home-projects {
+  list-style: none;
+  margin: 0.2rem 0 0;
+  padding: 0;
+}
+.home-projects li {
+  padding: 0.25rem 0;
+}
+.home-projects b {
+  font-weight: 600;
+}
+.home-projects a {
+  color: var(--ink);
+}
+.home-projects a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+.home-projects .blurb {
+  color: var(--muted);
+}
+
+// --- Figures ----------------------------------------------------------------
+.fig {
+  margin: 1.8rem 0;
+}
+.fig img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.fig figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+// --- Constellation background ----------------------------------------------
+#constellation {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+// Theme-aware syntax highlighting (generated; scoped under [data-theme]).
+@import "syntax";

@@ -1,0 +1,12 @@
+<footer class="site-footer container">
+  <nav class="footer-links" aria-label="Elsewhere">
+    {% for link in config.extra.links %}
+    <a href="{{ link.url }}" rel="me">{{ link.name }}</a>
+    {% if not loop.last %}<span class="dot" aria-hidden="true">·</span>{% endif %}
+    {% endfor %}
+  </nav>
+  <p class="muted small">
+    © {{ now() | date(format="%Y") }} {{ config.extra.author }} ·
+    <a href="{{ get_url(path='@/colophon.md') | safe }}">colophon</a>
+  </p>
+</footer>

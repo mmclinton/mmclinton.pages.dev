@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {# Set the theme before first paint to avoid a flash of the wrong colors. #}
+    <script>
+      (function () {
+        try {
+          var d = document.documentElement;
+          var t =
+            localStorage.getItem("theme") ||
+            (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          d.setAttribute("data-theme", t);
+          d.setAttribute("data-motion", localStorage.getItem("motion") || "full");
+        } catch (e) {}
+      })();
+    </script>
+
+    <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+    <meta
+      name="description"
+      content="{% block description %}{{ config.description }}{% endblock description %}"
+    />
+    <link rel="canonical" href="{{ current_url | default(value=config.base_url) | safe }}" />
+
+    <meta property="og:type" content="{% block og_type %}website{% endblock og_type %}" />
+    <meta property="og:site_name" content="{{ config.title }}" />
+    <meta property="og:title" content="{% block og_title %}{{ config.title }}{% endblock og_title %}" />
+    <meta property="og:description" content="{% block og_desc %}{{ config.description }}{% endblock og_desc %}" />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="preload" href="/fonts/Inter.var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" as="style" href="{{ get_url(path='main.css', cachebust=true) | safe }}" />
+    <link rel="stylesheet" href="{{ get_url(path='main.css', cachebust=true) | safe }}" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {% if config.generate_feeds %}
+    <link
+      rel="alternate"
+      type="application/atom+xml"
+      title="{{ config.title }}"
+      href="{{ get_url(path='atom.xml') | safe }}"
+    />
+    {% endif %} {% block head_extra %}{% endblock head_extra %}
+  </head>
+  <body>
+    <canvas id="constellation" aria-hidden="true"></canvas>
+    {% include "partials/nav.html" %}
+
+    <main class="container">{% block content %}{% endblock content %}</main>
+
+    {% include "partials/footer.html" %}
+
+    <script>
+      (function () {
+        var d = document.documentElement;
+        var tb = document.getElementById("theme-toggle");
+        if (tb)
+          tb.addEventListener("click", function () {
+            var n = d.getAttribute("data-theme") === "dark" ? "light" : "dark";
+            d.setAttribute("data-theme", n);
+            try {
+              localStorage.setItem("theme", n);
+            } catch (e) {}
+          });
+        var mb = document.getElementById("motion-toggle");
+        if (mb) {
+          mb.setAttribute("aria-pressed", d.getAttribute("data-motion") === "calm");
+          mb.addEventListener("click", function () {
+            var n = d.getAttribute("data-motion") === "calm" ? "full" : "calm";
+            d.setAttribute("data-motion", n);
+            mb.setAttribute("aria-pressed", n === "calm");
+            try {
+              localStorage.setItem("motion", n);
+            } catch (e) {}
+          });
+        }
+      })();
+    </script>
+    <script defer src="{{ get_url(path='js/constellation.js', cachebust=true) | safe }}"></script>
+    {% block scripts %}{% endblock scripts %}
+  </body>
+</html>

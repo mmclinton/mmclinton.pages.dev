@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="intro">
+  <h1 class="name">{{ config.extra.author }}</h1>
+  {% if section.content %}<div class="tagline-block">{{ section.content | safe }}</div>{% endif %}
+</section>
+
+<hr />
+
+{% set writing = get_section(path="writing/_index.md") %}
+{% if writing.pages | length > 0 %}
+<div class="stream-head">
+  <span class="section-label">writing</span>
+  <a class="stream-all" href="{{ get_url(path='@/writing/_index.md') | safe }}">all writing →</a>
+</div>
+<ul class="entry-list">
+  {% for post in writing.pages | slice(end=4) %}
+  <li>
+    <a href="{{ post.permalink | safe }}">{{ post.title }}</a>
+    <time datetime="{{ post.date }}">{{ post.date | date(format="%b %-d, %Y") }}</time>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% set reading = get_section(path="reading/_index.md") %}
+{% set current = reading.pages | filter(attribute="extra.status", value="reading") %}
+{% set finished = reading.pages | filter(attribute="extra.status", value="finished") %}
+{% if current | length > 0 or finished | length > 0 %}
+<div class="stream-head">
+  <span class="section-label">reading</span>
+  <a class="stream-all" href="{{ get_url(path='@/reading/_index.md') | safe }}">all reading →</a>
+</div>
+{% for book in current %}
+<p class="reading-now">
+  Now — <a href="{{ book.permalink | safe }}"><strong>{{ book.title }}</strong></a>{% if book.extra.author %} · {{ book.extra.author }}{% endif %}
+</p>
+{% endfor %}
+{% if finished | length > 0 %}
+<p class="reading-recent">
+  Recently:
+  {% for book in finished | slice(end=3) %}<a href="{{ book.permalink | safe }}">{{ book.title }}</a>{% if book.extra.rating %} <span class="stars" aria-label="{{ book.extra.rating }} out of 5">{%- for i in range(end=5) %}{% if i < book.extra.rating %}★{% else %}☆{% endif %}{% endfor -%}</span>{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}
+</p>
+{% endif %}
+{% endif %}
+
+{% set projects = get_section(path="projects/_index.md") %}
+{% if projects.pages | length > 0 %}
+<div class="stream-head">
+  <span class="section-label">building</span>
+  <a class="stream-all" href="{{ get_url(path='@/projects/_index.md') | safe }}">all projects →</a>
+</div>
+<ul class="home-projects">
+  {% for p in projects.pages | slice(end=4) %}
+  <li>
+    <a href="{{ p.permalink | safe }}"><b>{{ p.title }}</b></a>{% if p.description %} — <span class="blurb">{{ p.description }}</span>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}{{ section.title }} · {{ config.title }}{% endblock title %}
+{% block description %}{{ section.description | default(value=config.description) }}{% endblock description %}
+{% block og_title %}{{ section.title }} · {{ config.title }}{% endblock og_title %}
+
+{% block content %}
+<h1>{{ section.title }}</h1>
+{% if section.content %}<div class="prose">{{ section.content | safe }}</div>{% endif %}
+
+{% set reading = section.pages | filter(attribute="extra.status", value="reading") %}
+{% if reading | length > 0 %}
+<p class="section-label">reading now</p>
+<ul class="book-list">
+  {% for book in reading %}
+  <li class="book-row">
+    <a class="book-title" href="{{ book.permalink | safe }}">{{ book.title }}</a>
+    {% if book.extra.author %}<span class="book-author">{{ book.extra.author }}</span>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% set finished = section.pages | filter(attribute="extra.status", value="finished") %}
+{% if finished | length > 0 %}
+<p class="section-label">finished</p>
+<ul class="book-list">
+  {% for book in finished %}
+  <li class="book-row">
+    <a class="book-title" href="{{ book.permalink | safe }}">{{ book.title }}</a>
+    {% if book.extra.author %}<span class="book-author">{{ book.extra.author }}</span>{% endif %}
+    <span class="book-meta">
+      {% if book.extra.rating %}
+      <span class="stars" aria-label="{{ book.extra.rating }} out of 5">
+        {%- for i in range(end=5) %}{% if i < book.extra.rating %}★{% else %}☆{% endif %}{% endfor -%}
+      </span>
+      {% endif %}
+      <time datetime="{{ book.date }}">{{ book.date | date(format="%b %Y") }}</time>
+    </span>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endblock content %}

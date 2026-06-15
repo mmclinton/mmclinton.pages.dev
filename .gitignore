@@ -1,0 +1,15 @@
+# build output
+/public/
+
+# generated responsive images cache
+/static/processed_images/
+
+# nix / direnv
+/.direnv/
+result
+
+# node (build-time katex only)
+/node_modules/
+
+# os
+.DS_Store

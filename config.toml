@@ -1,0 +1,40 @@
+# Zola configuration — see https://www.getzola.org/documentation/getting-started/configuration/
+# Production URL. Swap to a custom domain later (then redeploy) if you add one.
+base_url = "https://mmc.pages.dev"
+title = "mmc"
+description = "Writing, reading, and things I build."
+
+# Build behaviour
+compile_sass = true
+minify_html = true
+build_search_index = false
+generate_feeds = true
+feed_filenames = ["atom.xml"]
+
+taxonomies = []
+
+[markdown]
+smart_punctuation = true
+insert_anchor_links = "heading"
+lazy_async_image = true
+
+[markdown.highlighting]
+# Class-based output so code colors follow the manual [data-theme] toggle.
+# gen-syntax-css.mjs scopes the emitted giallo CSS into sass/_syntax.scss.
+style = "class"
+light_theme = "github-light"
+dark_theme = "github-dark"
+
+[extra]
+author = "mmc"
+author_initials = "mmc"
+tagline = "writes, reads, and builds things worth keeping"
+
+# Footer links (placeholders — replace with your own)
+[[extra.links]]
+name = "Codeberg"
+url = "https://codeberg.org/"
+
+[[extra.links]]
+name = "Email"
+url = "mailto:mmc@example.com"

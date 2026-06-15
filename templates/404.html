@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Not found · {{ config.title }}{% endblock title %}
+
+{% block content %}
+<section class="intro">
+  <h1>404</h1>
+  <p class="muted">
+    That page wandered off. <a href="{{ get_url(path='/') | safe }}">Head home →</a>
+  </p>
+</section>
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} · {{ config.title }}{% endblock title %}
+{% block description %}{{ page.description | default(value=config.description) }}{% endblock description %}
+{% block og_type %}article{% endblock og_type %}
+{% block og_title %}{{ page.title }}{% endblock og_title %}
+{% block og_desc %}{{ page.description | default(value=config.description) }}{% endblock og_desc %}
+
+{% block content %}
+<article class="prose">
+  <h1>{{ page.title }}</h1>
+  {% if page.date %}
+  <p class="muted small">{{ page.date | date(format="%B %-d, %Y") }}</p>
+  {% endif %}
+
+  {% if page.toc | length >= 3 %}
+  <nav class="toc" aria-label="Table of contents">
+    <p class="toc-label">contents</p>
+    <ol>
+      {% for h in page.toc %}
+      <li>
+        <a href="{{ h.permalink | safe }}">{{ h.title }}</a>
+        {% if h.children %}
+        <ol>
+          {% for c in h.children %}
+          <li><a href="{{ c.permalink | safe }}">{{ c.title }}</a></li>
+          {% endfor %}
+        </ol>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+  </nav>
+  {% endif %}
+
+  {{ page.content | safe }}
+</article>
+{% endblock content %}
