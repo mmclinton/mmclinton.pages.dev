@@ -4,7 +4,7 @@ date = 2026-06-10
 description = "What you're looking at — Zola, Nix, zero trackers"
 [extra]
 tags = ["zola", "nix"]
-repo = "https://codeberg.org/mmc/mmc-6wo"
+repo = "https://codeberg.org/mmc/mmclinton.pages.dev"
 lang = "Web"
 +++
 
