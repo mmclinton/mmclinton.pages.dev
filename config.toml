@@ -2,7 +2,7 @@
 # Production URL. MUST match the serving origin or assets break (cross-origin +
 # CSP). Swap to a custom domain later (then redeploy) when you add one.
 base_url = "https://mmclinton.pages.dev"
-title = "mmc"
+title = "mmclinton"
 description = "Writing, reading, and things I build."
 
 compile_sass = true
@@ -25,7 +25,7 @@ dark_theme = "github-dark"
 
 [extra]
 author = "m. clinton"
-author_initials = "mmc"
+author_initials = "mmclinton"
 tagline = "writes, reads, and builds things worth keeping"
 
 [[extra.links]]

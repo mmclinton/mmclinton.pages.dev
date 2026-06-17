@@ -1,6 +1,6 @@
 +++
 title = "Dune"
-date = 2026-05-20
+date = 2025-08-26
 description = "Frank Herbert's desert epic."
 [extra]
 author = "Frank Herbert"
