@@ -1,0 +1,7 @@
+# Runner credentials + logs — never commit these.
+.runner
+*.log
+
+# nix
+result
+.direnv/
