@@ -12,7 +12,6 @@
             localStorage.getItem("theme") ||
             (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
           d.setAttribute("data-theme", t);
-          d.setAttribute("data-motion", localStorage.getItem("motion") || "full");
         } catch (e) {}
       })();
     </script>
@@ -64,18 +63,6 @@
               localStorage.setItem("theme", n);
             } catch (e) {}
           });
-        var mb = document.getElementById("motion-toggle");
-        if (mb) {
-          mb.setAttribute("aria-pressed", d.getAttribute("data-motion") === "calm");
-          mb.addEventListener("click", function () {
-            var n = d.getAttribute("data-motion") === "calm" ? "full" : "calm";
-            d.setAttribute("data-motion", n);
-            mb.setAttribute("aria-pressed", n === "calm");
-            try {
-              localStorage.setItem("motion", n);
-            } catch (e) {}
-          });
-        }
       })();
     </script>
     <script defer src="{{ get_url(path='js/constellation.js', cachebust=true) | safe }}"></script>

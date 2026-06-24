@@ -28,35 +28,47 @@ length > 0 %}
     </li>
     {% endfor %}
 </ul>
-{% endif %} {% set reading = get_section(path="reading/_index.md") %} {% set
-current = reading.pages | filter(attribute="extra.status", value="reading") %}
-{% set finished = reading.pages | filter(attribute="extra.status",
-value="finished") %} {% if current | length > 0 or finished | length > 0 %}
+{% endif %} {% set reading = get_section(path="reading/_index.md") %} {% set books =
+reading.extra.books | sort(attribute="date") | reverse %} {% set current =
+books | filter(attribute="status", value="reading") %} {% set finished = books
+| filter(attribute="status", value="finished") %} {% if current | length > 0
+or finished | length > 0 %}
+{% if current | length > 0 %}
 <div class="stream-head">
-    <span class="section-label">reading</span>
+    <span class="section-label">reading now</span>
     <a
         class="stream-all"
         href="{{ get_url(path='@/reading/_index.md') | safe }}"
         >all reading →</a
     >
 </div>
-{% for book in current %}
-<p class="reading-now">
-    <a href="{{ book.permalink | safe }}"><strong>{{ book.title }}</strong></a
-    >{% if book.extra.author %}
-    <span class="reading-author">by {{ book.extra.author }}</span>{% endif %}
-</p>
-{% endfor %} {% if finished | length > 0 %}
-<p class="reading-recent">
-    Recently Finished: {% for book in finished | slice(end=1) %}<a
-        href="{{ book.permalink | safe }}"
-        >{{ book.title }}</a
-    >{% if book.extra.rating %}
-    <span class="stars" aria-label="{{ book.extra.rating }} out of 5"
-        >{%- for i in range(end=5) %}{% if i < book.extra.rating %}★{% else
-        %}☆{% endif %}{% endfor -%}</span
-    >{% endif %}{% if not loop.last %} · {% endif %}{% endfor %}
-</p>
+<ul class="book-list">
+  {% for book in current %}
+  <li class="book-row">
+    {% if book.link %}<a class="book-title" href="{{ book.link }}" rel="noopener noreferrer">{{ book.title }}</a>
+    {% else %}<span class="book-title">{{ book.title }}</span>{% endif %}
+    {% if book.author %}<span class="book-author">{{ book.author }}</span>{% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %} {% if finished | length > 0 %}
+<p class="section-label">recently finished</p>
+<ul class="book-list">
+  {% for book in finished | slice(end=3) %}
+  <li class="book-row">
+    {% if book.link %}<a class="book-title" href="{{ book.link }}" rel="noopener noreferrer">{{ book.title }}</a>
+    {% else %}<span class="book-title">{{ book.title }}</span>{% endif %}
+    {% if book.author %}<span class="book-author">{{ book.author }}</span>{% endif %}
+    {% if book.rating %}
+    <span class="book-meta">
+      <span class="stars" aria-label="{{ book.rating }} out of 5">
+        {%- for i in range(end=5) %}{% if i < book.rating %}★{% else %}☆{% endif %}{% endfor -%}
+      </span>
+    </span>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
 {% endif %} {% endif %} {% set projects = get_section(path="projects/_index.md")
 %} {% if projects.pages | length > 0 %}
 <div class="stream-head">

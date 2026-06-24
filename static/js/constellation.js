@@ -1,8 +1,7 @@
 // Cursor-reactive "constellation" background. Sparse drifting points joined by
 // faint links; points near the cursor lean toward it and accent links brighten.
-// Subtle, consistent site-wide. Colors track the theme via CSS custom properties;
-// motion tracks a Full/Calm preference via the `data-motion` attribute (calm
-// softens the cursor reach, pull, and drift). Both re-read on a MutationObserver.
+// Subtle, consistent site-wide. Colors track the theme via CSS custom properties,
+// re-read on a MutationObserver.
 (function () {
   var canvas = document.getElementById("constellation");
   if (!canvas) return;
@@ -56,22 +55,6 @@
     if (reduce && W) {
       ctx.clearRect(0, 0, W, H);
       dots();
-    }
-  }
-
-  // Full vs. Calm motion (data-motion). Calm shrinks the cursor reach + pull and
-  // slows the ambient drift — softer, not frozen. Existing velocities are rescaled
-  // so points keep their positions on a live toggle.
-  function applyMotion() {
-    var calm = document.documentElement.getAttribute("data-motion") === "calm";
-    var newSpeed = calm ? 0.08 : 0.18;
-    var ratio = CFG.speed ? newSpeed / CFG.speed : 1;
-    CFG.cursor = calm ? 52 : 150;
-    CFG.pull = calm ? 0.08 : 0.3;
-    CFG.speed = newSpeed;
-    for (var i = 0; i < pts.length; i++) {
-      pts[i].vx *= ratio;
-      pts[i].vy *= ratio;
     }
   }
 
@@ -173,7 +156,6 @@
   }
 
   applyTheme();
-  applyMotion();
   size();
 
   if (reduce) {
@@ -212,6 +194,6 @@
     applyMotion();
   }).observe(document.documentElement, {
     attributes: true,
-    attributeFilter: ["data-theme", "data-motion"],
+    attributeFilter: ["data-theme"],
   });
 })();
