@@ -13,8 +13,9 @@ link = "https://www.goodreads.com/book/show/50894597-and-then-there-were-none"
 [[extra.books]]
 title = "Swan Song"
 author = "Robert McCammon"
-date = "2026-06-18"
-status = "reading"
+date = "2026-06-28"
+status = "finished"
+rating = 5
 link = "https://www.goodreads.com/book/show/6458635-swan-song"
 
 [[extra.books]]
