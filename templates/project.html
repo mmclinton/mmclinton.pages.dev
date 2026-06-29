@@ -12,11 +12,8 @@
   <p class="card-links project-detail-links">
     {% if page.extra.repo %}<a href="{{ page.extra.repo }}" rel="noopener">repo ↗</a>{% endif %}
     {% if page.extra.demo %}<a href="{{ page.extra.demo }}" rel="noopener">demo ↗</a>{% endif %}
-    {% if page.extra.lang %}<span class="lang">{{ page.extra.lang }}</span>{% endif %}
   </p>
-  {% if page.extra.tags %}
-  <div class="tags">{% for tag in page.extra.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</div>
-  {% endif %}
+  {% if page.extra.tags %}<p class="project-stack">{{ page.extra.tags | join(sep=" · ") }}</p>{% endif %}
   {{ page.content | safe }}
 </article>
 {% endblock content %}

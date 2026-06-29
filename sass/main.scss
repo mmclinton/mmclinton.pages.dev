@@ -504,19 +504,6 @@ blockquote {
   font-weight: 600;
   white-space: nowrap;
 }
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-}
-.tag {
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 0.1rem 0.55rem;
-  border-radius: 20px;
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
-  color: var(--accent);
-}
 .card-links {
   display: flex;
   align-items: baseline;
@@ -526,11 +513,6 @@ blockquote {
   border-top: 1px solid var(--rule);
   font-size: 0.82rem;
   font-weight: 600;
-}
-.card-links .lang {
-  margin-left: auto;
-  color: var(--faint);
-  font-weight: 400;
 }
 .project-detail-links {
   margin: 0.4rem 0 1rem;
