@@ -3,7 +3,7 @@ title = "saw"
 date = 2026-01-12
 description = "A terminal workbench for running static analysis"
 [extra]
-tags = ["rust", "tui", "analysis", "nix"]
+tags = ["rust", "nix"]
 repo = "https://codeberg.org/mmc/saw"
 lang = "Rust"
 +++

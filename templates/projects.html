@@ -8,21 +8,22 @@
 <h1>{{ section.title }}</h1>
 {% if section.content %}<div class="prose">{{ section.content | safe }}</div>{% endif %}
 
-<div class="project-grid">
+<div class="project-list">
   {% for project in section.pages %}
-  <article class="project-card">
+  <article class="project-row">
     <h2 class="project-name"><a href="{{ project.permalink | safe }}">{{ project.title }}</a></h2>
     {% if project.description %}<p class="project-blurb">{{ project.description }}</p>{% endif %}
-    {% if project.extra.tags %}
-    <div class="tags">
-      {% for tag in project.extra.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+    {% if project.extra.tags or project.extra.repo or project.extra.demo %}
+    <div class="project-meta">
+      {% if project.extra.tags %}<span class="project-stack">{{ project.extra.tags | join(sep=" · ") }}</span>{% endif %}
+      {% if project.extra.repo or project.extra.demo %}
+      <span class="project-links">
+        {% if project.extra.repo %}<a href="{{ project.extra.repo }}" rel="noopener">repo ↗</a>{% endif %}
+        {% if project.extra.demo %}<a href="{{ project.extra.demo }}" rel="noopener">demo ↗</a>{% endif %}
+      </span>
+      {% endif %}
     </div>
     {% endif %}
-    <div class="card-links">
-      {% if project.extra.repo %}<a href="{{ project.extra.repo }}" rel="noopener">repo ↗</a>{% endif %}
-      {% if project.extra.demo %}<a href="{{ project.extra.demo }}" rel="noopener">demo ↗</a>{% endif %}
-      {% if project.extra.lang %}<span class="lang">{{ project.extra.lang }}</span>{% endif %}
-    </div>
   </article>
   {% endfor %}
 </div>

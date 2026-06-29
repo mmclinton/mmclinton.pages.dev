@@ -3,7 +3,7 @@ title = "spectral"
 date = 2026-02-18
 description = "A real-time audio noise suppression application"
 [extra]
-tags = ["audio", "rust", "nix"]
+tags = ["rust", "nix"]
 repo = "https://codeberg.org/mmc/spectral"
 lang = "Rust"
 +++
