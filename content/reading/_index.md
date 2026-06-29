@@ -4,6 +4,13 @@ description = "My virtual bookshelf."
 template = "reading.html"
 
 [[extra.books]]
+title = "The Winter King"
+author = "Bernard Cornwell"
+date = "2026-06-29"
+status = "reading"
+link = "https://www.goodreads.com/book/show/120287.The_Winter_King"
+
+[[extra.books]]
 title = "And Then There Were None"
 author = "Agatha Christie"
 date = "2026-06-23"
