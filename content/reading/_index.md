@@ -171,7 +171,7 @@ link = "https://www.goodreads.com/book/show/212393364"
 
 [[extra.books]]
 title = "King Sorrow"
-author = "Joe  Hill"
+author = "Joe Hill"
 date = "2026-01-27"
 status = "finished"
 rating = 3
@@ -315,7 +315,7 @@ link = "https://www.goodreads.com/book/show/52091303"
 
 [[extra.books]]
 title = "Carrie"
-author = "Stephen  King"
+author = "Stephen King"
 date = "2025-07-27"
 status = "finished"
 rating = 3
@@ -323,7 +323,7 @@ link = "https://www.goodreads.com/book/show/219531476"
 
 [[extra.books]]
 title = "The Colorado Kid"
-author = "Stephen  King"
+author = "Stephen King"
 date = "2025-08-13"
 status = "finished"
 rating = 4
@@ -355,7 +355,7 @@ link = "https://www.goodreads.com/book/show/33132260"
 
 [[extra.books]]
 title = "The Shining"
-author = "Stephen  King"
+author = "Stephen King"
 date = "2025-07-18"
 status = "finished"
 rating = 3
@@ -363,7 +363,7 @@ link = "https://www.goodreads.com/book/show/220505376"
 
 [[extra.books]]
 title = "Rita Hayworth and Shawshank Redemption"
-author = "Stephen  King"
+author = "Stephen King"
 date = "2025-07-11"
 status = "finished"
 rating = 3
@@ -411,7 +411,7 @@ link = "https://www.goodreads.com/book/show/40242274"
 
 [[extra.books]]
 title = "The Valley of Vision: A Collection of Puritan Prayers & Devotions"
-author = "Arthur      Bennett"
+author = "Arthur Bennett"
 date = ""
 status = "finished"
 rating = 5
@@ -507,7 +507,7 @@ link = "https://www.goodreads.com/book/show/32681092"
 
 [[extra.books]]
 title = "All That Jesus Commanded: The Christian Life according to the Gospels"
-author = "John      Piper"
+author = "John Piper"
 date = ""
 status = "finished"
 rating = 4
