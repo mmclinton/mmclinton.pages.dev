@@ -62,6 +62,9 @@
 
 html {
   background: var(--bg);
+  // Reserve the gutter even when the page doesn't scroll, so the centered
+  // column keeps the same x across short/long pages and live search filtering.
+  scrollbar-gutter: stable;
 }
 
 body {
