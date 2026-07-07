@@ -421,6 +421,10 @@ blockquote {
   align-items: baseline;
   padding: 0.4rem 0;
   border-bottom: 1px solid var(--rule);
+  // Virtualization for free: offscreen rows skip layout/paint, so the shelf
+  // can grow to thousands of entries at ~constant render cost.
+  content-visibility: auto;
+  contain-intrinsic-block-size: auto 65px;
 }
 .book-title {
   grid-column: 1;
