@@ -45,7 +45,7 @@ or finished | length > 0 %}
 <ul class="book-list">
   {% for book in current %}
   <li class="book-row">
-    {% if book.link %}<a class="book-title" href="{{ book.link }}" rel="noopener noreferrer">{{ book.title }}</a>
+    {% if book.link %}<a class="book-title" href="{{ book.link }}" target="_blank" rel="noopener noreferrer">{{ book.title }}</a>
     {% else %}<span class="book-title">{{ book.title }}</span>{% endif %}
     {% if book.author %}<span class="book-author">{{ book.author }}</span>{% endif %}
   </li>
@@ -56,7 +56,7 @@ or finished | length > 0 %}
 <ul class="book-list">
   {% for book in finished | slice(end=3) %}
   <li class="book-row">
-    {% if book.link %}<a class="book-title" href="{{ book.link }}" rel="noopener noreferrer">{{ book.title }}</a>
+    {% if book.link %}<a class="book-title" href="{{ book.link }}" target="_blank" rel="noopener noreferrer">{{ book.title }}</a>
     {% else %}<span class="book-title">{{ book.title }}</span>{% endif %}
     {% if book.author %}<span class="book-author">{{ book.author }}</span>{% endif %}
     {% if book.date or book.rating %}

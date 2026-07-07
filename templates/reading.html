@@ -17,7 +17,7 @@
   {% for book in reading %}
   <li class="book-row">
     {% if book.link %}
-    <a class="book-title" href="{{ book.link }}" rel="noopener noreferrer">{{ book.title }}</a>
+    <a class="book-title" href="{{ book.link }}" target="_blank" rel="noopener noreferrer">{{ book.title }}</a>
     {% else %}
     <span class="book-title">{{ book.title }}</span>
     {% endif %}
@@ -45,7 +45,7 @@
   {% for book in finished %}
   <li class="book-row">
     {% if book.link %}
-    <a class="book-title" href="{{ book.link }}" rel="noopener noreferrer">{{ book.title }}</a>
+    <a class="book-title" href="{{ book.link }}" target="_blank" rel="noopener noreferrer">{{ book.title }}</a>
     {% else %}
     <span class="book-title">{{ book.title }}</span>
     {% endif %}
