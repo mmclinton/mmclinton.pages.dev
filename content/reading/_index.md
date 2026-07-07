@@ -23,7 +23,7 @@ author = "Robert McCammon"
 date = "2026-06-28"
 status = "finished"
 rating = 5
-link = "https://www.goodreads.com/book/show/6458635"
+link = "https://www.goodreads.com/review/show/8684621288"
 
 [[extra.books]]
 title = "Frankenstein"
@@ -47,7 +47,7 @@ author = "Stephen Graham Jones"
 date = "2026-06-17"
 status = "finished"
 rating = 1
-link = "https://www.goodreads.com/book/show/52180399"
+link = "https://www.goodreads.com/review/show/8692986160"
 
 [[extra.books]]
 title = "The Secret History"
