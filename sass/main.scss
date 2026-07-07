@@ -465,6 +465,7 @@ blockquote {
 .book-meta time {
   color: var(--faint);
   font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
 }
 // Sort/search controls (reading page; unhidden by js/reading.js).
 .section-label-row {
@@ -520,6 +521,20 @@ blockquote {
 }
 .sort-btn:hover {
   color: var(--accent);
+}
+.book-sort .sort-btn[data-key="title"] {
+  // The grid stretches the 1fr item and UA buttons center their text.
+  justify-self: start;
+  text-align: left;
+}
+.book-sort .sort-btn[data-key="rating"] {
+  // Exactly the width of a .stars run so the button sits over its column
+  // (which also lands "date" on the time column via the shared gap):
+  // 5 x (2944/2816 em advance of U+2605/2606 in the pinned Inter subset
+  // at 0.8rem) + 5 x 1px letter-spacing. Re-derive if the star glyphs,
+  // size, spacing, or font change.
+  min-inline-size: calc(4.1818rem + 5px);
+  text-align: right;
 }
 .sort-btn[aria-pressed="true"] {
   color: var(--accent);
