@@ -35,6 +35,18 @@
         ];
       };
 
+      # `nix flake check` runs the full site build in the sandbox, so the
+      # documented pre-commit gate actually gates the build.
+      checks.build = pkgs.stdenvNoCC.mkDerivation {
+        name = "site-build";
+        src = self;
+        nativeBuildInputs = [pkgs.zola pkgs.nodejs_22 pkgs.esbuild];
+        KATEX_DIST = "${katexDist}/dist";
+        buildPhase = "bash scripts/build.sh";
+        installPhase = "mv public $out";
+        dontFixup = true;
+      };
+
       formatter = pkgs.alejandra;
     });
 }
