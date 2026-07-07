@@ -29,8 +29,19 @@
 
 {% set finished = books | filter(attribute="status", value="finished") %}
 {% if finished | length > 0 %}
-<p class="section-label">finished</p>
-<ul class="book-list">
+<div class="section-label-row">
+  <p class="section-label">finished</p>
+  <input id="book-search" class="book-search" type="search" placeholder="search"
+         autocomplete="off" aria-label="Search finished books by title or author" hidden />
+</div>
+<div id="book-sort" class="book-sort" hidden>
+  <button type="button" class="sort-btn" data-key="title" aria-pressed="false">title<span class="sort-arrow" aria-hidden="true"></span></button>
+  <span class="book-sort-meta">
+    <button type="button" class="sort-btn" data-key="date" aria-pressed="true">date<span class="sort-arrow" aria-hidden="true"></span></button>
+    <button type="button" class="sort-btn" data-key="rating" aria-pressed="false">rating<span class="sort-arrow" aria-hidden="true"></span></button>
+  </span>
+</div>
+<ul class="book-list" id="finished-list">
   {% for book in finished %}
   <li class="book-row">
     {% if book.link %}
@@ -52,5 +63,6 @@
   </li>
   {% endfor %}
 </ul>
+<p id="book-empty" class="book-empty" role="status" hidden>no matches.</p>
 {% endif %}
 {% endblock content %}
