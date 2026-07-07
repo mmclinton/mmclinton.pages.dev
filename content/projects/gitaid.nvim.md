@@ -5,7 +5,6 @@ description = "A small, idiomatic Neovim plugin"
 [extra]
 tags = ["lua", "neovim", "nix"]
 repo = "https://codeberg.org/mmc/gitaid.nvim"
-lang = "Lua"
 +++
 
 `gitaid` displays the output of `git status --short` in a floating popup. Files are selectable — pressing `<CR>` jumps to the file in the previously focused window.

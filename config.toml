@@ -26,7 +26,6 @@ dark_theme = "github-dark"
 [extra]
 author = "m. clinton"
 author_initials = "mmclinton"
-tagline = "writes, reads, and builds things worth keeping"
 
 [[extra.links]]
 name = "Codeberg"

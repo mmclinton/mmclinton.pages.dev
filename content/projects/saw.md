@@ -5,7 +5,6 @@ description = "A terminal workbench for running static analysis"
 [extra]
 tags = ["rust", "nix"]
 repo = "https://codeberg.org/mmc/saw"
-lang = "Rust"
 +++
 
 Discover the available analyzers for your language, run them, and review normalized findings in one place — `saw` is a terminal-first static-analysis workbench, built in Rust, language by language, and in early development.

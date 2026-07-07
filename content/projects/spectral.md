@@ -5,7 +5,6 @@ description = "A real-time audio noise suppression application"
 [extra]
 tags = ["rust", "nix"]
 repo = "https://codeberg.org/mmc/spectral"
-lang = "Rust"
 +++
 
 Spectral cleans background noise out of your microphone in real time, powered by [RNNoise](https://arxiv.org/pdf/1709.08243) — a hybrid DSP and neural-network-based suppression model originally developed by Xiph.org. On Linux it runs through PipeWire as a GUI (`spectral`) paired with a background daemon (`spectral-daemon`) that does the audio processing.
