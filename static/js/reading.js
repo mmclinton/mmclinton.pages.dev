@@ -31,8 +31,13 @@
   });
 
   var DEFAULT_DIR = { title: 1, date: -1, rating: -1 };
-  var key = "date";
-  var dir = -1;
+  // Template order is date desc; with the stable index tiebreak in
+  // applySort, this state reproduces it exactly, so "cleared" needs no
+  // separate representation.
+  var NATURAL_KEY = "date";
+  var NATURAL_DIR = -1;
+  var key = NATURAL_KEY;
+  var dir = NATURAL_DIR;
 
   function applySort() {
     rows.sort(function (a, b) {
@@ -73,7 +78,12 @@
     if (!b) return;
     var k = b.getAttribute("data-key");
     if (k === key) {
-      dir = -dir;
+      if (dir === DEFAULT_DIR[k]) {
+        dir = -dir;
+      } else {
+        key = NATURAL_KEY;
+        dir = NATURAL_DIR;
+      }
     } else {
       key = k;
       dir = DEFAULT_DIR[k];
