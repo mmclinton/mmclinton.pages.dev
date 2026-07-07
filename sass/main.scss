@@ -54,6 +54,12 @@
   box-sizing: border-box;
 }
 
+// The UA's [hidden] { display: none } loses to any author display rule
+// (e.g. .book-row's grid), so restate it at author origin.
+[hidden] {
+  display: none !important;
+}
+
 html {
   background: var(--bg);
 }
