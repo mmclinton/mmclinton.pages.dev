@@ -6,8 +6,8 @@ on:
 jobs:
   deploy:
     # Runs on a self-hosted *host-mode* runner that already has Nix on PATH.
-    # See CI-SETUP.md for the one-time runner setup. (For a Docker-mode runner,
-    # re-add a nix install step, e.g. DeterminateSystems/nix-installer-action.)
+    # (For a Docker-mode runner, re-add a nix install step, e.g.
+    # DeterminateSystems/nix-installer-action.)
     runs-on: self-hosted
     steps:
       - uses: https://github.com/actions/checkout@v4
