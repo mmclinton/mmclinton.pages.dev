@@ -32,6 +32,8 @@
           pkgs.prettier
           pkgs.alejandra
           pkgs.miniserve
+          # pyftsubset for scripts/subset-font.sh (brotli enables woff2 output)
+          (pkgs.python3.withPackages (ps: [ps.fonttools ps.brotli]))
         ];
       };
 
