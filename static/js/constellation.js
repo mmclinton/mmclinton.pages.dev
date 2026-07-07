@@ -191,7 +191,6 @@
 
   new MutationObserver(function () {
     applyTheme();
-    applyMotion();
   }).observe(document.documentElement, {
     attributes: true,
     attributeFilter: ["data-theme"],
