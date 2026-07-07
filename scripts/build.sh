@@ -5,5 +5,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 
 zola build
-esbuild public/js/constellation.js --minify --allow-overwrite --outfile=public/js/constellation.js
+for f in public/js/*.js; do
+  esbuild "$f" --minify --allow-overwrite --outfile="$f"
+done
 node scripts/postbuild.mjs

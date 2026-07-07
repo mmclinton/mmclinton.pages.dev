@@ -66,3 +66,7 @@
 <p id="book-empty" class="book-empty" role="status" hidden>no matches.</p>
 {% endif %}
 {% endblock content %}
+
+{% block scripts %}
+<script defer src="{{ get_url(path='js/reading.js', cachebust=true) | safe }}"></script>
+{% endblock scripts %}
