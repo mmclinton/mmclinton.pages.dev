@@ -4,18 +4,19 @@ description = "My virtual bookshelf."
 template = "reading.html"
 
 [[extra.books]] 
-title = "The Winter King" 
-author = "Bernard Cornwell" 
-date = "2026-06-29" 
+title = "Speaks the Nightbird" 
+author = "Robert McCammon" 
+date = "2026-07-13" 
 status = "reading" 
-link = "https://www.goodreads.com/book/show/120287.The_Winter_King"
+link = "https://www.goodreads.com/book/show/23824"
 
 [[extra.books]] 
 title = "And Then There Were None" 
 author = "Agatha Christie"
-date = "2026-06-23" 
-status = "reading" 
-link = "https://www.goodreads.com/book/show/50894597-and-then-there-were-none"
+date = "2026-07-12" 
+status = "finished" 
+rating = 4
+link = "https://www.goodreads.com/book/show/50894597"
 
 [[extra.books]]
 title = "Swan Song"
