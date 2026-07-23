@@ -10,8 +10,8 @@
   <h1>{{ page.title }}</h1>
   {% if page.description %}<p class="muted">{{ page.description }}</p>{% endif %}
   <p class="card-links project-detail-links">
-    {% if page.extra.repo %}<a href="{{ page.extra.repo }}" rel="noopener">repo ↗</a>{% endif %}
-    {% if page.extra.demo %}<a href="{{ page.extra.demo }}" rel="noopener">demo ↗</a>{% endif %}
+    {% if page.extra.repo %}<a href="{{ page.extra.repo }}" target="_blank" rel="noopener noreferrer">repo ↗</a>{% endif %}
+    {% if page.extra.demo %}<a href="{{ page.extra.demo }}" target="_blank" rel="noopener noreferrer">demo ↗</a>{% endif %}
   </p>
   {% if page.extra.tags %}<p class="project-stack">{{ page.extra.tags | join(sep=" · ") }}</p>{% endif %}
   {{ page.content | safe }}

@@ -1,7 +1,7 @@
 <footer class="site-footer container">
   <nav class="footer-links" aria-label="Elsewhere">
     {% for link in config.extra.links %}
-    <a href="{{ link.url }}" rel="me">{{ link.name }}</a>
+    {% if link.url is starting_with("http") %}<a href="{{ link.url }}" target="_blank" rel="me noopener noreferrer">{{ link.name }}</a>{% else %}<a href="{{ link.url }}" rel="me">{{ link.name }}</a>{% endif %}
     {% if not loop.last %}<span class="dot" aria-hidden="true">·</span>{% endif %}
     {% endfor %}
   </nav>
