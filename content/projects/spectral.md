@@ -1,6 +1,6 @@
 +++
 title = "spectral"
-date = 2026-02-18
+date = 2000-01-01
 description = "A real-time audio noise suppression application"
 [extra]
 tags = ["rust", "nix"]

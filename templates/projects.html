@@ -9,7 +9,7 @@
 {% if section.content %}<div class="prose">{{ section.content | safe }}</div>{% endif %}
 
 <div class="project-list">
-  {% for project in section.pages %}
+  {% for project in section.pages | reverse %}
   <article class="project-row">
     <h2 class="project-name"><a href="{{ project.permalink | safe }}">{{ project.title }}</a></h2>
     {% if project.description %}<p class="project-blurb">{{ project.description }}</p>{% endif %}

@@ -1,6 +1,6 @@
 +++
 title = "saw"
-date = 2026-01-12
+date = 2000-01-04
 description = "A terminal workbench for running static analysis"
 [extra]
 tags = ["rust", "nix"]

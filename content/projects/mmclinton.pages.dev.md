@@ -1,6 +1,6 @@
 +++
 title = "mmclinton.pages.dev"
-date = 2026-06-10
+date = 2000-01-03
 description = "What you're looking at — Zola, Nix, zero trackers"
 [extra]
 tags = ["zola", "nix"]

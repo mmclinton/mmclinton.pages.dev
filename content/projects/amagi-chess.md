@@ -1,6 +1,6 @@
 +++
 title = "amagi-chess"
-date = 2026-05-20
+date = 2000-01-05
 description = "A UCI chess engine that plays on Lichess"
 [extra]
 tags = ["rust", "nix"]

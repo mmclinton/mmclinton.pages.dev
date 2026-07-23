@@ -1,6 +1,6 @@
 +++
 title = "wordhord"
-date = 2026-07-16
+date = 2000-01-02
 description = "A private, offline-first dictionary application"
 [extra]
 tags = ["rust", "nix"]
