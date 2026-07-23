@@ -7,18 +7,28 @@ tags = ["rust", "nix"]
 repo = "https://codeberg.org/mmc/saw"
 +++
 
-Discover the available analyzers for your language, run them, and review normalized findings in one place — `saw` is a terminal-first static-analysis workbench, built in Rust, language by language, and in early development.
+`saw` is a terminal-first static-analysis workbench — it discovers the analyzers for your project, runs them, and reports one normalized set of findings, as human-readable text or machine-readable JSON.
 
-Findings are normalized across tools — clippy → Correctness, rustfmt → Formatting, cargo-audit → Security — and every run is stored under `.saw/` in the project root.
+## Why
 
-## Usage
+Every analyzer speaks its own dialect: different commands, different flags, different output schemas. `saw` runs them all and normalizes what comes back — clippy lints and cargo-audit advisories arrive in the same shape, so you (or an agent) read one report instead of juggling several.
 
-Run `saw` from inside a Rust project (it walks up to the nearest `Cargo.toml`):
+## Design
+
+Rust, for a single fast binary whose output is a stable contract: the exit codes and JSON schema are fixed — `0` clean, `1` findings, `2` incomplete — so scripts and agents can depend on them. A two-crate workspace splits the engine (`saw-core`) from the CLI (`saw`), and each analyzer is a plugin behind one interface. saw resolves analyzers from its own pinned, checksum-verified store rather than your `PATH`, so runs are reproducible — never "whatever is on the machine."
+
+## Try it
 
 ```sh
-saw run     # run the enabled analyzers in parallel, render findings, persist the run
-saw list    # show each analyzer and whether its underlying tool is installed
-saw show    # re-render the latest stored run (or: saw show <run-id>)
+nix run git+https://codeberg.org/mmc/saw -- analyze
 ```
 
-Run `saw` with no subcommand (or `saw tui`) to open the interactive TUI — a three-tab workbench (home, analysis, tools) that triggers analyzer runs without leaving the terminal.
+The core commands:
+
+```sh
+saw analyze [PATH] [--format text|json]   # run the enabled analyzers, normalize, report
+saw tool list                             # show analyzers and whether each is installed
+saw tool install <ID>                     # fetch a pinned analyzer into saw's store
+```
+
+Status: early — Rust (clippy, cargo-audit) on Linux today, with more languages and an interactive TUI on the roadmap.
