@@ -7,31 +7,22 @@ tags = ["rust", "nix"]
 repo = "https://codeberg.org/mmc/spectral"
 +++
 
-Spectral cleans background noise out of your microphone in real time, powered by [RNNoise](https://arxiv.org/pdf/1709.08243) — a hybrid DSP and neural-network-based suppression model originally developed by Xiph.org. On Linux it runs through PipeWire as a GUI (`spectral`) paired with a background daemon (`spectral-daemon`) that does the audio processing.
+Spectral strips background noise out of your microphone in real time, powered by [RNNoise](https://arxiv.org/pdf/1709.08243) — a hybrid DSP and neural-network suppression model from Xiph.org. On Linux it registers a native PipeWire virtual microphone, so any application can pick the cleaned signal as its input.
 
-## Features
+## Why
 
-- Real-time noise suppression using the RNNoise neural network
-- Native PipeWire audio-pipeline integration
-- A virtual microphone usable from any application
-- Adjustable suppression threshold
-- State that persists across sessions
+Fans, keyboards, and street noise leak into every call and recording, and the suppressors that handle them well tend to be proprietary and cloud-bound. Spectral does it locally: one virtual mic any app can select, with the denoising, a voice-activity gate, and optional rumble and leveling all under your control.
 
-## Usage
+## Design
 
-Try it straight from the repo:
+Rust — real-time audio can't tolerate a garbage-collector pause on the hot path, and memory safety matters across the PipeWire FFI boundary, where `panic = "unwind"` is kept deliberately so a failed C call or a poisoned lock unwinds instead of aborting. Denoising is a pure-Rust RNNoise port. The app splits in two: a thin [Slint](https://slint.dev) GUI that doubles as a headless CLI, and a background `spectral-daemon` that owns all audio processing — they talk over a Unix-domain socket. A `platform/linux/` seam leaves room for other backends later.
+
+## Try it
 
 ```sh
 nix run git+https://codeberg.org/mmc/spectral
 ```
 
-Then:
+Launch `spectral`, pick your input device, and click **Enable** — the daemon starts on its own and a virtual mic named **Spectral-Mic** appears for any app to select. The same binary works headless (`spectral enable --device <id>`, `spectral status`, `spectral disable`).
 
-1. Start the daemon: `spectral-daemon`
-2. Launch the GUI: `spectral`
-3. Select your input device from the dropdown
-4. Adjust the noise suppression threshold as needed
-5. Click **Enable** to create the virtual microphone
-6. Select **Spectral-Mic** (or your custom name) as the input in other applications
-
-Nix is the officially supported install method — it pulls in the PipeWire, libpulse, and WirePlumber configuration Spectral depends on.
+Nix is the supported install path — it brings the PipeWire and WirePlumber configuration Spectral depends on; an AUR package (`spectral-mic`) is pending. Spectral needs a running PipeWire session.
