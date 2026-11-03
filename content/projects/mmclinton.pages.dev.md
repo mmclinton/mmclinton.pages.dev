@@ -4,10 +4,10 @@ date = 2000-01-03
 description = "What you're looking at — Zola, Nix, zero trackers"
 [extra]
 tags = ["zola", "nix"]
-repo = "https://codeberg.org/mmc/mmclinton.pages.dev"
+repo = "https://github.com/mmclinton/mmclinton.pages.dev"
 +++
 
-This website. A Zola static site, reproducible through a Nix flake, deployed to Cloudflare Pages from Codeberg. Math is prerendered with KaTeX, code highlighting follows the theme toggle, and the only client JavaScript is a theme switch and a small constellation canvas.
+This website. A Zola static site, reproducible through a Nix flake, deployed to Cloudflare Pages from my own Forgejo. Math is prerendered with KaTeX, code highlighting follows the theme toggle, and the only client JavaScript is a theme switch and a small constellation canvas.
 
 See the [colophon](/colophon/) for the full rundown.
 

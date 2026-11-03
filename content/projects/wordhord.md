@@ -4,7 +4,6 @@ date = 2000-01-02
 description = "A private, offline-first dictionary application"
 [extra]
 tags = ["rust", "nix"]
-repo = "https://codeberg.org/mmc/wordhord"
 +++
 
 `wordhord` is a native, offline-first dictionary — private and fast, with no accounts, no tracking, and no network at all once a dictionary is downloaded. The name is Old English for "word-hoard," a treasury of words.

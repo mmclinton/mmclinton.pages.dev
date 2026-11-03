@@ -4,7 +4,6 @@ date = 2000-01-05
 description = "A UCI chess engine that plays on Lichess"
 [extra]
 tags = ["rust", "nix"]
-repo = "https://codeberg.org/mmc/amagi-chess"
 demo = "https://lichess.org/@/amagi-chess"
 +++
 

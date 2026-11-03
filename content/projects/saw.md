@@ -4,7 +4,6 @@ date = 2000-01-04
 description = "A terminal workbench for running static analysis"
 [extra]
 tags = ["rust", "nix"]
-repo = "https://codeberg.org/mmc/saw"
 +++
 
 `saw` is a terminal-first static-analysis workbench — it discovers the analyzers for your project, runs them, and reports one normalized set of findings, as human-readable text or machine-readable JSON.
@@ -17,11 +16,7 @@ Every analyzer speaks its own dialect: different commands, different flags, diff
 
 Rust, for a single fast binary whose output is a stable contract: the exit codes and JSON schema are fixed — `0` clean, `1` findings, `2` incomplete — so scripts and agents can depend on them. A two-crate workspace splits the engine (`saw-core`) from the CLI (`saw`), and each analyzer is a plugin behind one interface. saw resolves analyzers from its own pinned, checksum-verified store rather than your `PATH`, so runs are reproducible — never "whatever is on the machine."
 
-## Try it
-
-```sh
-nix run git+https://codeberg.org/mmc/saw -- analyze
-```
+## Usage
 
 The core commands:
 

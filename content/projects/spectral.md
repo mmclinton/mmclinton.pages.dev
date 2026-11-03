@@ -4,7 +4,7 @@ date = 2000-01-01
 description = "A real-time audio noise suppression application"
 [extra]
 tags = ["rust", "nix"]
-repo = "https://codeberg.org/mmc/spectral"
+repo = "https://github.com/mmclinton/spectral"
 +++
 
 Spectral strips background noise out of your microphone in real time, powered by [RNNoise](https://arxiv.org/pdf/1709.08243) — a hybrid DSP and neural-network suppression model from Xiph.org. On Linux it registers a native PipeWire virtual microphone, so any application can pick the cleaned signal as its input.
@@ -20,7 +20,7 @@ Rust — real-time audio can't tolerate a garbage-collector pause on the hot pat
 ## Try it
 
 ```sh
-nix run git+https://codeberg.org/mmc/spectral
+nix run github:mmclinton/spectral
 ```
 
 Launch `spectral`, pick your input device, and click **Enable** — the daemon starts on its own and a virtual mic named **Spectral-Mic** appears for any app to select. The same binary works headless (`spectral enable --device <id>`, `spectral status`, `spectral disable`).
