@@ -6,15 +6,13 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs =
-    {
-      self,
-      nixpkgs,
-      flake-utils,
-    }:
+  outputs = {
+    self,
+    nixpkgs,
+    flake-utils,
+  }:
     flake-utils.lib.eachDefaultSystem (
-      system:
-      let
+      system: let
         pkgs = nixpkgs.legacyPackages.${system};
 
         # KaTeX, vendored declaratively (build-time only) for server-side math
@@ -24,8 +22,7 @@
           url = "https://registry.npmjs.org/katex/-/katex-0.17.0.tgz";
           hash = "sha256-PH5c4Ut57zenUaY0YL4/mDiM18w4Hs0qbgFg6L0yoTo=";
         };
-      in
-      {
+      in {
         devShells.default = pkgs.mkShell {
           KATEX_DIST = "${katexDist}/dist";
           packages = [
