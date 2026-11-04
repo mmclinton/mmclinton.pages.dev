@@ -21,7 +21,7 @@
       name="description"
       content="{% block description %}{{ config.description }}{% endblock description %}"
     />
-    <link rel="canonical" href="{{ current_url | default(value=config.base_url) | safe }}" />
+    <link rel="canonical" href="{{ (current_url or config.base_url) | safe }}" />
 
     <meta property="og:type" content="{% block og_type %}website{% endblock og_type %}" />
     <meta property="og:site_name" content="{{ config.title }}" />

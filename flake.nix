@@ -51,6 +51,9 @@
             pkgs.zola
             pkgs.nodejs_22
             pkgs.esbuild
+            # zola builds its load_data HTTP client at startup and panics
+            # without CA certificates, even though this build fetches nothing.
+            pkgs.cacert
           ];
           KATEX_DIST = "${katexDist}/dist";
           buildPhase = "bash scripts/build.sh";

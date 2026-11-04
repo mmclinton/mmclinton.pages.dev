@@ -1,5 +1,7 @@
+{% component katex(tex: string = "") -%}
 {%- if body -%}
 <div class="math-tex" data-display="true">{{ body }}</div>
 {%- else -%}
 <span class="math-tex" data-display="false">{{ tex }}</span>
 {%- endif -%}
+{%- endcomponent katex %}
