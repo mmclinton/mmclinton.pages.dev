@@ -4,7 +4,12 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-zola build
+zola_log=$(zola build 2>&1) || { printf '%s\n' "$zola_log" >&2; exit 1; }
+printf '%s\n' "$zola_log"
+if [[ $zola_log == *"in a sorted section"* ]]; then
+  echo "build.sh: Zola left pages out of a sorted section; give each a date or weight." >&2
+  exit 1
+fi
 for f in public/js/*.js; do
   esbuild "$f" --minify --allow-overwrite --outfile="$f"
 done
