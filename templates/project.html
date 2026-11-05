@@ -11,9 +11,10 @@
   {% if page.description %}<p class="muted">{{ page.description }}</p>{% endif %}
   <p class="card-links project-detail-links">
     {% if page.extra.repo %}<a href="{{ page.extra.repo }}" target="_blank" rel="noopener noreferrer">repo ↗</a>{% endif %}
-    {% if page.extra.demo %}<a href="{{ page.extra.demo }}" target="_blank" rel="noopener noreferrer">demo ↗</a>{% endif %}
+    {% for link in page.extra.links | default(value=[]) %}<a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.name }} ↗</a>{% endfor %}
   </p>
   {% if page.extra.tags %}<p class="project-stack">{{ page.extra.tags | join(sep=" · ") }}</p>{% endif %}
+  {% if page.extra.screenshot %}{{<image src={page.extra.screenshot.src} alt={page.extra.screenshot.alt} width={page.extra.screenshot.width or 760} />}}{% endif %}
   {{ page.content | safe }}
 </article>
 {% endblock content %}

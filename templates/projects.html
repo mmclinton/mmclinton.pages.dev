@@ -13,13 +13,13 @@
   <article class="project-row">
     <h2 class="project-name"><a href="{{ project.permalink | safe }}">{{ project.title }}</a></h2>
     {% if project.description %}<p class="project-blurb">{{ project.description }}</p>{% endif %}
-    {% if project.extra.tags or project.extra.repo or project.extra.demo %}
+    {% if project.extra.tags or project.extra.repo or project.extra.links %}
     <div class="project-meta">
       {% if project.extra.tags %}<span class="project-stack">{{ project.extra.tags | join(sep=" · ") }}</span>{% endif %}
-      {% if project.extra.repo or project.extra.demo %}
+      {% if project.extra.repo or project.extra.links %}
       <span class="project-links">
         {% if project.extra.repo %}<a href="{{ project.extra.repo }}" target="_blank" rel="noopener noreferrer">repo ↗</a>{% endif %}
-        {% if project.extra.demo %}<a href="{{ project.extra.demo }}" target="_blank" rel="noopener noreferrer">demo ↗</a>{% endif %}
+        {% for link in project.extra.links | default(value=[]) %}<a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.name }} ↗</a>{% endfor %}
       </span>
       {% endif %}
     </div>
