@@ -6,7 +6,6 @@ include_in_feeds = false
 [extra]
 tags = ["rust", "nix"]
 repo = "https://github.com/mmclinton/smv"
-screenshot = { src = "img/projects/smv.png", alt = "smv showing a markdown document with headings, a table, a highlighted Rust code block, a task list, and a quote" }
 +++
 
 smv is a markdown viewer for Linux: a window and the document in it, rendered the way GitHub renders it. It opens a file, or reads standard input when given `-`.

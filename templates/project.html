@@ -14,7 +14,9 @@
     {% for link in page.extra.links | default(value=[]) %}<a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.name }} ↗</a>{% endfor %}
   </p>
   {% if page.extra.tags %}<p class="project-stack">{{ page.extra.tags | join(sep=" · ") }}</p>{% endif %}
-  {% if page.extra.screenshot %}{{<image src={page.extra.screenshot.src} alt={page.extra.screenshot.alt} width={page.extra.screenshot.width or 760} />}}{% endif %}
+  {% if page.extra.screenshot %}{% set shot = get_image_metadata(path=page.extra.screenshot.src) %}
+  <figure class="fig"><img src="{{ get_url(path=page.extra.screenshot.src, cachebust=true) | safe }}" alt="{{ page.extra.screenshot.alt }}" width="{{ shot.width }}" height="{{ shot.height }}" loading="lazy" decoding="async" /></figure>
+  {% endif %}
   {{ page.content | safe }}
 </article>
 {% endblock content %}

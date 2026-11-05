@@ -6,7 +6,7 @@ include_in_feeds = false
 [extra]
 tags = ["javascript", "gnome"]
 repo = "https://github.com/mmclinton/gnome-center-window"
-screenshot = { src = "img/projects/gnome-center-window.png", alt = "The extension's preferences: a keyboard shortcut set to Shift+Alt+C, and switches for centering horizontally and vertically", width = 639 }
+screenshot = { src = "img/projects/gnome-center-window.png", alt = "The extension's preferences: a keyboard shortcut set to Shift+Alt+C, and switches for centering horizontally and vertically" }
 
 [[extra.links]]
 name = "extensions.gnome.org"
