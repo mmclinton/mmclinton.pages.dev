@@ -7,26 +7,26 @@ upstream = "https://github.com/uutils/util-linux"
 
 [[extra.tools]]
 name = "chrt"
-work = [{ what = "Implement chrt", state = "in-progress" }]
+work = [{ what = "Implement `chrt`", state = "in-progress" }]
 
 [[extra.tools]]
 name = "ionice"
-work = [{ what = "Implement ionice", pr = 637, state = "open" }]
+work = [{ what = "Implement `ionice`", pr = 637, state = "open" }]
 
 [[extra.tools]]
 name = "chcpu"
 work = [
-  { what = "Report each error only once", pr = 617, state = "merged" },
-  { what = "Bound the CPU list walk at the highest possible CPU", pr = 634, state = "open" },
+  { what = "chcpu: report each error only once", pr = 617, state = "merged" },
+  { what = "chcpu: bound the cpu list walk at the highest possible CPU", pr = 634, state = "open" },
 ]
 
 [[extra.tools]]
 name = "rename"
-work = [{ what = "Implement rename", pr = 632, state = "merged" }]
+work = [{ what = "Implement `rename`", pr = 632, state = "merged" }]
 
 [[extra.tools]]
 name = "lscpu"
-work = [{ what = "Fix a panic when physical_package_id is -1", pr = 622, state = "merged" }]
+work = [{ what = "lscpu: fix panic when physical_package_id is -1", pr = 622, state = "merged" }]
 +++
 
 [uutils](https://github.com/uutils) rewrites core Unix tools in Rust, and its util-linux project does that for the util-linux suite: the commands for processes, CPUs, disks, and the rest of the system plumbing that ships on nearly every Linux machine. I contribute because these are tools I lean on, and matching a decades-old C implementation's behavior exactly is a demanding way to learn the kernel interfaces underneath them.
