@@ -28,17 +28,16 @@
   {% endfor %}
 </div>
 
-{% for path in section.subsections %}
-{% set sub = get_section(path=path) %}
-{% if sub.pages | length > 0 %}
-<h2 class="section-title">{{ sub.title }}</h2>
-{% if sub.content %}<div class="prose">{{ sub.content | safe }}</div>{% endif %}
+{% set contributing = get_section(path="projects/contributing/_index.md", allow_missing=true) %}
+{% if contributing and contributing.pages | length > 0 %}
+<h2 class="section-title">{{ contributing.title }}</h2>
+{% if contributing.content %}<div class="prose">{{ contributing.content | safe }}</div>{% endif %}
 <div class="project-list">
-  {% for c in sub.pages %}
+  {% for c in contributing.pages %}
   {% set_global work = [] %}
   {% for t in c.extra.tools %}{% for w in t.work %}{% set_global work = [...work, w] %}{% endfor %}{% endfor %}
   <article class="project-row">
-    <h2 class="project-name"><a href="{{ c.permalink | safe }}">{{ c.title }}</a></h2>
+    <h3 class="project-name"><a href="{{ c.permalink | safe }}">{{ c.title }}</a></h3>
     {% if c.description %}<p class="project-blurb">{{ c.description }}</p>{% endif %}
     <div class="project-meta">
       <span class="project-stack">{{ [t.name for t in c.extra.tools] | join(sep=" · ") }}</span>
@@ -50,5 +49,4 @@
   {% endfor %}
 </div>
 {% endif %}
-{% endfor %}
 {% endblock content %}
