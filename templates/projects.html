@@ -31,7 +31,8 @@
 {% for path in section.subsections %}
 {% set sub = get_section(path=path) %}
 {% if sub.pages | length > 0 %}
-<p class="section-label">{{ sub.title | lower }}</p>
+<h2 class="section-title">{{ sub.title }}</h2>
+{% if sub.content %}<div class="prose">{{ sub.content | safe }}</div>{% endif %}
 <div class="project-list">
   {% for c in sub.pages %}
   {% set_global work = [] %}
