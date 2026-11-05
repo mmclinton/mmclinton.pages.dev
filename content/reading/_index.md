@@ -3,12 +3,36 @@ title = "Reading"
 description = "My virtual bookshelf."
 template = "reading.html"
 
-[[extra.books]] 
-title = "Speaks the Nightbird" 
-author = "Robert McCammon" 
-date = "2026-07-13" 
-status = "reading" 
-link = "https://www.goodreads.com/book/show/23824"
+[[extra.books]]
+title = "A Confederacy of Dunces: A Novel"
+author = "John Kennedy Toole"
+date = "2026-10-22"
+status = "reading"
+link = "https://www.goodreads.com/book/show/310612"
+
+[[extra.books]]
+title = "The Bed of Procrustes: Philosophical and Practical Aphorisms"
+author = "Nassim Nicholas Taleb"
+date = "2026-10-13"
+status = "finished"
+rating = 2
+link = "https://www.goodreads.com/book/show/9402297"
+
+[[extra.books]]
+title = "The Death of Ivan Ilych"
+author = "Leo Tolstoy"
+date = "2026-09-11"
+status = "finished"
+rating = 3
+link = "https://www.goodreads.com/book/show/18386"
+
+[[extra.books]]
+title = "Olalla"
+author = "Robert Louis Stevenson"
+date = "2026-08-23"
+status = "finished"
+rating = 2
+link = "https://www.goodreads.com/book/show/1748177"
 
 [[extra.books]] 
 title = "And Then There Were None" 
