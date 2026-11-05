@@ -6,4 +6,4 @@ template = "projects.html"
 page_template = "project.html"
 +++
 
-Things I've made — mostly small tools that scratch a specific itch.
+Things I've made, mostly small tools that scratch a specific itch.
