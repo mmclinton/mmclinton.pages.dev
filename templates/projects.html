@@ -18,8 +18,8 @@
       {% if project.extra.tags %}<span class="project-stack">{{ project.extra.tags | join(sep=" · ") }}</span>{% endif %}
       {% if project.extra.repo or project.extra.links %}
       <span class="project-links">
-        {% if project.extra.repo %}<a href="{{ project.extra.repo }}" target="_blank" rel="noopener noreferrer">repo ↗</a>{% endif %}
         {% for link in project.extra.links | default(value=[]) %}<a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.name }} ↗</a>{% endfor %}
+        {% if project.extra.repo %}<a href="{{ project.extra.repo }}" target="_blank" rel="noopener noreferrer">repo ↗</a>{% endif %}
       </span>
       {% endif %}
     </div>
