@@ -6,6 +6,7 @@ cd "$(dirname "$0")/.."
 
 zola_log=$(zola build 2>&1) || { printf '%s\n' "$zola_log" >&2; exit 1; }
 printf '%s\n' "$zola_log"
+# Zola only warns, and exits 0, when it drops a page; this matches that warning's text.
 if [[ $zola_log == *"in a sorted section"* ]]; then
   echo "build.sh: Zola left pages out of a sorted section; give each a date or weight." >&2
   exit 1
