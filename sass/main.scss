@@ -576,11 +576,13 @@ blockquote {
 }
 .project-meta {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
-  gap: 0.9rem;
+  gap: 0.2rem 0.9rem;
   margin-top: 0.3rem;
 }
 .project-stack {
+  white-space: nowrap;
   font-family: var(--font-mono);
   font-size: 0.74rem;
   letter-spacing: 0.01em;
