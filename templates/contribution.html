@@ -6,25 +6,28 @@
 {% block og_title %}{{ page.title }}{% endblock og_title %}
 
 {% block content %}
-{% set states = ["in-progress", "open", "merged"] %}
-{% for t in page.extra.tools %}{% for w in t.work %}{% if w.state not in states %}{{ throw(message="unknown contribution state '" ~ w.state ~ "' on " ~ t.name) }}{% endif %}{% endfor %}{% endfor %}
+{% set states = config.extra.contribution_states %}
+{% for t in page.extra.tools %}
+{% if t.work | length == 0 %}{{ throw(message="contribution tool " ~ t.name ~ " has no work") }}{% endif %}
+{% for w in t.work %}{% if w.state not in states %}{{ throw(message="unknown contribution state '" ~ w.state ~ "' on " ~ t.name) }}{% endif %}{% endfor %}
+{% endfor %}
 {% set parts = page.content | split(pat='<span id="continue-reading"></span>') %}
+{% if parts | length != 2 %}{{ throw(message=page.relative_path ~ " needs one <!-- more --> after its intro") }}{% endif %}
 <article class="prose">
   <h1>{{ page.title }}</h1>
   {% if page.description %}<p class="muted">{{ page.description }}</p>{% endif %}
   <p class="card-links project-detail-links">
     <a href="{{ page.extra.upstream }}" target="_blank" rel="noopener noreferrer">repo ↗</a>
   </p>
-  {% if parts | length > 1 %}{{ parts[0] | safe }}{% endif %}
+  {{ parts[0] | safe }}
   <p class="section-label">tools</p>
   <ul class="contrib-list">
     {% for rank in states %}
     {% for t in page.extra.tools %}
     {% set tool_states = [w.state for w in t.work] %}
-    {% set top = "in-progress" if "in-progress" in tool_states else ("open" if "open" in tool_states else "merged") %}
-    {% if top == rank %}
+    {% if [s for s in states if s in tool_states][0] == rank %}
     <li>
-      <a class="contrib-tool" href="#{{ t.name }}">{{ t.name }}</a>
+      <a class="contrib-tool" href="#{{ t.name | slugify }}">{{ t.name }}</a>
       <ul class="contrib-work">
         {% for s in states %}{% for w in t.work %}{% if w.state == s %}
         <li>{{ w.what | markdown(inline=true) | safe }}{% if w.pr %} <a href="{{ page.extra.upstream }}/pull/{{ w.pr }}" target="_blank" rel="noopener noreferrer">#{{ w.pr }}</a>{% endif %}
@@ -36,6 +39,6 @@
     {% endfor %}
     {% endfor %}
   </ul>
-  {{ (parts[1] if parts | length > 1 else page.content) | safe }}
+  {{ parts[1] | safe }}
 </article>
 {% endblock content %}

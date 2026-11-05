@@ -29,6 +29,8 @@ dark_theme = "github-dark"
 [extra]
 author = "m. clinton"
 author_initials = "mmclinton"
+# Upstream work states, most active first; contribution pages rank by this order.
+contribution_states = ["in-progress", "open", "merged"]
 
 [[extra.links]]
 name = "GitHub"

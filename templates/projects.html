@@ -42,7 +42,7 @@
     <div class="project-meta">
       <span class="project-stack">{{ [t.name for t in c.extra.tools] | join(sep=" · ") }}</span>
       <span class="contrib-counts">
-        {% for s in ["merged", "open", "in-progress"] %}{% set n = [w for w in work if w.state == s] | length %}{% if n > 0 %}<span>{{ n }} {{<contribution_state state={s} />}}</span>{% endif %}{% endfor %}
+        {% for s in config.extra.contribution_states %}{% set n = [w for w in work if w.state == s] | length %}{% if n > 0 %}<span>{{ n }} {{<contribution_state state={s} />}}</span>{% endif %}{% endfor %}
       </span>
     </div>
   </article>
