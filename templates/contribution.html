@@ -4,6 +4,7 @@
 {% block description %}{{ page.description or config.description }}{% endblock description %}
 {% block og_type %}article{% endblock og_type %}
 {% block og_title %}{{ page.title }}{% endblock og_title %}
+{% block og_desc %}{{ page.description or config.description }}{% endblock og_desc %}
 
 {% block content %}
 {% set states = config.extra.contribution_states %}
