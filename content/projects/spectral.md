@@ -1,8 +1,7 @@
 +++
 title = "spectral"
-date = 2000-01-01
+weight = 1
 description = "Real-time microphone noise suppression for Linux"
-include_in_feeds = false
 [extra]
 tags = ["rust", "nix"]
 repo = "https://github.com/mmclinton/spectral"

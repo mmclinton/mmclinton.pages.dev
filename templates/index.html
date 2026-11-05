@@ -83,7 +83,7 @@ or finished | length > 0 %}
     >
 </div>
 <ul class="home-projects">
-    {% for p in (projects.pages | reverse)[:5] %}
+    {% for p in projects.pages[:5] %}
     <li>
         <a href="{{ p.permalink | safe }}"><b>{{ p.title }}</b></a
         >{% if p.description %} —

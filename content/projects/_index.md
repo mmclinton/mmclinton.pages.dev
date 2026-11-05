@@ -1,7 +1,7 @@
 +++
 title = "Building"
 description = "Programming projects and small tools I've made."
-sort_by = "date"
+sort_by = "weight"
 template = "projects.html"
 page_template = "project.html"
 +++

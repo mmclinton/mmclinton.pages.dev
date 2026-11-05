@@ -1,8 +1,7 @@
 +++
 title = "gnome-center-window"
-date = 2000-01-03
+weight = 3
 description = "Center the active GNOME window with one shortcut"
-include_in_feeds = false
 [extra]
 tags = ["javascript", "gnome"]
 repo = "https://github.com/mmclinton/gnome-center-window"

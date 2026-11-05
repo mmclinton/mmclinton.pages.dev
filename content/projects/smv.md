@@ -1,8 +1,7 @@
 +++
 title = "smv"
-date = 2000-01-02
+weight = 2
 description = "A markdown viewer for Linux"
-include_in_feeds = false
 [extra]
 tags = ["rust", "nix"]
 repo = "https://github.com/mmclinton/smv"
