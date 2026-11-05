@@ -16,7 +16,7 @@
   </p>
   {% if page.extra.tags %}<p class="project-stack">{{ page.extra.tags | join(sep=" · ") }}</p>{% endif %}
   {% if page.extra.screenshot %}{% set shot = get_image_metadata(path=page.extra.screenshot.src) %}
-  <figure class="fig"><img src="{{ get_url(path=page.extra.screenshot.src, cachebust=true) | safe }}" alt="{{ page.extra.screenshot.alt }}" width="{{ shot.width }}" height="{{ shot.height }}" loading="lazy" decoding="async" /></figure>
+  <figure class="fig"><img src="{{ get_url(path=page.extra.screenshot.src, cachebust=true) | safe }}" alt="{{ page.extra.screenshot.alt }}" width="{{ shot.width }}" height="{{ shot.height }}" decoding="async" /></figure>
   {% endif %}
   {{ page.content | safe }}
 </article>
