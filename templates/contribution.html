@@ -6,38 +6,36 @@
 {% block og_title %}{{ page.title }}{% endblock og_title %}
 
 {% block content %}
-{% set work = [] %}
-{% for t in page.extra.tools %}{% for w in t.work %}{% set_global work = [...work, {...w, "tool": t.name}] %}{% endfor %}{% endfor %}
-{% set active = [w for w in work if w.state != "merged"] %}
+{% set states = ["in-progress", "open", "merged"] %}
+{% for t in page.extra.tools %}{% for w in t.work %}{% if w.state not in states %}{{ throw(message="unknown contribution state '" ~ w.state ~ "' on " ~ t.name) }}{% endif %}{% endfor %}{% endfor %}
+{% set parts = page.content | split(pat='<span id="continue-reading"></span>') %}
 <article class="prose">
   <h1>{{ page.title }}</h1>
   {% if page.description %}<p class="muted">{{ page.description }}</p>{% endif %}
   <p class="card-links project-detail-links">
     <a href="{{ page.extra.upstream }}" target="_blank" rel="noopener noreferrer">repo ↗</a>
   </p>
-  {% if active | length > 0 %}
-  <p class="section-label">now</p>
-  <ul class="contrib-list">
-    {% for w in active %}
-    <li><a class="contrib-tool" href="#{{ w.tool }}">{{ w.tool }}</a> <span class="muted">{{ w.what }}</span>
-      <span class="contrib-state">{{<contribution_state state={w.state} />}}</span></li>
-    {% endfor %}
-  </ul>
-  {% endif %}
+  {% if parts | length > 1 %}{{ parts[0] | safe }}{% endif %}
   <p class="section-label">tools</p>
   <ul class="contrib-list">
+    {% for rank in states %}
     {% for t in page.extra.tools %}
+    {% set tool_states = [w.state for w in t.work] %}
+    {% set top = "in-progress" if "in-progress" in tool_states else ("open" if "open" in tool_states else "merged") %}
+    {% if top == rank %}
     <li>
-      <a class="contrib-tool" href="#{{ t.name }}">{{ t.name }}</a> <span class="muted">{{ t.summary }}</span>
+      <a class="contrib-tool" href="#{{ t.name }}">{{ t.name }}</a>
       <ul class="contrib-work">
-        {% for w in t.work %}
+        {% for s in states %}{% for w in t.work %}{% if w.state == s %}
         <li>{{ w.what }}{% if w.pr %} <a href="{{ page.extra.upstream }}/pull/{{ w.pr }}" target="_blank" rel="noopener noreferrer">#{{ w.pr }}</a>{% endif %}
           <span class="contrib-state">{{<contribution_state state={w.state} />}}</span></li>
-        {% endfor %}
+        {% endif %}{% endfor %}{% endfor %}
       </ul>
     </li>
+    {% endif %}
+    {% endfor %}
     {% endfor %}
   </ul>
-  {{ page.content | safe }}
+  {{ (parts[1] if parts | length > 1 else page.content) | safe }}
 </article>
 {% endblock content %}
