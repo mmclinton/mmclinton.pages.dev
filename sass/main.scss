@@ -734,10 +734,6 @@ blockquote {
   content: "·";
   margin: 0 0.45em;
 }
-.home-contrib {
-  margin: 0.4rem 0 0;
-  color: var(--muted);
-}
 
 // Theme-aware syntax highlighting (generated; scoped under [data-theme]).
 @import "syntax";
