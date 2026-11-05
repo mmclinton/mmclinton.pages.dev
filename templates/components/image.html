@@ -1,14 +1,18 @@
 {% component image(src: string, alt: string = "", caption: string = "", width: integer = 760) -%}
-{%- set w2 = width * 2 -%}
-{%- set avif1 = resize_image(path=src, width=width, height=0, op="fit_width", format="avif", quality=60) -%}
-{%- set webp1 = resize_image(path=src, width=width, height=0, op="fit_width", format="webp", quality=72) -%}
-{%- set base = resize_image(path=src, width=width, height=0, op="fit_width", format="auto", quality=82) -%}
-{%- set avif2 = resize_image(path=src, width=w2, height=0, op="fit_width", format="avif", quality=55) -%}
-{%- set webp2 = resize_image(path=src, width=w2, height=0, op="fit_width", format="webp", quality=68) -%}
+{%- set meta = get_image_metadata(path=src) -%}
+{%- set w = width if width < meta.width else meta.width -%}
+{%- set hidpi = meta.width >= w * 2 -%}
+{%- set avif1 = resize_image(path=src, width=w, height=0, op="fit_width", format="avif", quality=60) -%}
+{%- set webp1 = resize_image(path=src, width=w, height=0, op="fit_width", format="webp", quality=72) -%}
+{%- set base = resize_image(path=src, width=w, height=0, op="fit_width", format="auto", quality=82) -%}
+{%- if hidpi -%}
+{%- set avif2 = resize_image(path=src, width=w * 2, height=0, op="fit_width", format="avif", quality=55) -%}
+{%- set webp2 = resize_image(path=src, width=w * 2, height=0, op="fit_width", format="webp", quality=68) -%}
+{%- endif -%}
 <figure class="fig">
   <picture>
-    <source type="image/avif" srcset="{{ avif1.url }} 1x, {{ avif2.url }} 2x" />
-    <source type="image/webp" srcset="{{ webp1.url }} 1x, {{ webp2.url }} 2x" />
+    <source type="image/avif" srcset="{{ avif1.url }} 1x{% if hidpi %}, {{ avif2.url }} 2x{% endif %}" />
+    <source type="image/webp" srcset="{{ webp1.url }} 1x{% if hidpi %}, {{ webp2.url }} 2x{% endif %}" />
     <img src="{{ base.url }}" alt="{{ alt }}" width="{{ base.width }}" height="{{ base.height }}" loading="lazy" decoding="async" />
   </picture>
   {% if caption %}<figcaption>{{ caption }}</figcaption>{% endif %}
