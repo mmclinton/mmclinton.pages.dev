@@ -686,5 +686,58 @@ blockquote {
   pointer-events: none;
 }
 
+// --- Contributions ----------------------------------------------------------
+.contrib-list,
+.contrib-work {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.contrib-list {
+  margin-bottom: 1.6rem;
+}
+.contrib-list > li,
+.contrib-work li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.6rem;
+}
+.contrib-list > li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.contrib-list > li:first-child {
+  border-top: 1px solid var(--rule);
+}
+.contrib-tool {
+  font-family: var(--font-mono);
+  font-weight: 600;
+}
+.contrib-work {
+  flex-basis: 100%;
+  margin-top: 0.25rem;
+  font-size: 0.88rem;
+}
+.contrib-state {
+  margin-left: auto;
+  color: var(--faint);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+.contrib-counts {
+  margin-left: auto;
+  font-size: 0.78rem;
+  color: var(--faint);
+}
+.contrib-counts span + span::before {
+  content: "·";
+  margin: 0 0.45em;
+}
+.home-contrib {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+}
+
 // Theme-aware syntax highlighting (generated; scoped under [data-theme]).
 @import "syntax";

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} · {{ config.title }}{% endblock title %}
+{% block description %}{{ page.description or config.description }}{% endblock description %}
+{% block og_type %}article{% endblock og_type %}
+{% block og_title %}{{ page.title }}{% endblock og_title %}
+
+{% block content %}
+{% set work = [] %}
+{% for t in page.extra.tools %}{% for w in t.work %}{% set_global work = [...work, {...w, "tool": t.name}] %}{% endfor %}{% endfor %}
+{% set active = [w for w in work if w.state != "merged"] %}
+<article class="prose">
+  <h1>{{ page.title }}</h1>
+  {% if page.description %}<p class="muted">{{ page.description }}</p>{% endif %}
+  <p class="card-links project-detail-links">
+    <a href="{{ page.extra.upstream }}" target="_blank" rel="noopener noreferrer">repo ↗</a>
+  </p>
+  {% if active | length > 0 %}
+  <p class="section-label">now</p>
+  <ul class="contrib-list">
+    {% for w in active %}
+    <li><a class="contrib-tool" href="#{{ w.tool }}">{{ w.tool }}</a> <span class="muted">{{ w.what }}</span>
+      <span class="contrib-state">{{<contribution_state state={w.state} />}}</span></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  <p class="section-label">tools</p>
+  <ul class="contrib-list">
+    {% for t in page.extra.tools %}
+    <li>
+      <a class="contrib-tool" href="#{{ t.name }}">{{ t.name }}</a> <span class="muted">{{ t.summary }}</span>
+      <ul class="contrib-work">
+        {% for w in t.work %}
+        <li>{{ w.what }}{% if w.pr %} <a href="{{ page.extra.upstream }}/pull/{{ w.pr }}" target="_blank" rel="noopener noreferrer">#{{ w.pr }}</a>{% endif %}
+          <span class="contrib-state">{{<contribution_state state={w.state} />}}</span></li>
+        {% endfor %}
+      </ul>
+    </li>
+    {% endfor %}
+  </ul>
+  {{ page.content | safe }}
+</article>
+{% endblock content %}

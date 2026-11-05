@@ -27,4 +27,27 @@
   </article>
   {% endfor %}
 </div>
+
+{% for path in section.subsections %}
+{% set sub = get_section(path=path) %}
+{% if sub.pages | length > 0 %}
+<p class="section-label">{{ sub.title | lower }}</p>
+<div class="project-list">
+  {% for c in sub.pages %}
+  {% set_global work = [] %}
+  {% for t in c.extra.tools %}{% for w in t.work %}{% set_global work = [...work, w] %}{% endfor %}{% endfor %}
+  <article class="project-row">
+    <h2 class="project-name"><a href="{{ c.permalink | safe }}">{{ c.title }}</a></h2>
+    {% if c.description %}<p class="project-blurb">{{ c.description }}</p>{% endif %}
+    <div class="project-meta">
+      <span class="project-stack">{{ [t.name for t in c.extra.tools] | join(sep=" · ") }}</span>
+      <span class="contrib-counts">
+        {% for s in ["merged", "open", "in-progress"] %}{% set n = [w for w in work if w.state == s] | length %}{% if n > 0 %}<span>{{ n }} {{<contribution_state state={s} />}}</span>{% endif %}{% endfor %}
+      </span>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+{% endif %}
+{% endfor %}
 {% endblock content %}
