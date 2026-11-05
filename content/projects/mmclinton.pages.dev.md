@@ -2,6 +2,7 @@
 title = "mmclinton.pages.dev"
 date = 2000-01-04
 description = "What you're looking at: Zola, Nix, zero trackers"
+include_in_feeds = false
 [extra]
 tags = ["zola", "nix"]
 repo = "https://github.com/mmclinton/mmclinton.pages.dev"
