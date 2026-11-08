@@ -21,6 +21,14 @@ name = "ionice"
 work = [{ what = "Implement `ionice`", pr = 637, state = "open" }]
 
 [[extra.tools]]
+name = "last"
+work = [
+  { what = "last: fix the panic in time zones west of UTC", pr = 691, state = "merged" },
+  { what = "last: fail the time format tests without records", pr = 690, state = "merged" },
+  { what = "last: fix the tests that fail on Ubuntu 26.04 runners", pr = 688, state = "merged" },
+]
+
+[[extra.tools]]
 name = "lscpu"
 work = [{ what = "lscpu: fix panic when physical_package_id is -1", pr = 622, state = "merged" }]
 
@@ -50,6 +58,12 @@ The hard part is everything chrt(1) does that its man page never mentions. Under
 `ionice` shows or changes a process's I/O scheduling class and priority. The port covers all of ionice(1), checked against four util-linux releases by comparing output, exit status, and the arguments of the `ioprio_get` and `ioprio_set` syscalls themselves.
 
 The hard part was that util-linux doesn't enforce its own documented ranges. The kernel takes the class from three bits and the level modulo eight, so `ionice -c 99` quietly runs idle, `-n 8192` changes the class outright, and `-n 8` means the highest best-effort priority, not one past the lowest. Copying that faithfully would have meant copying a trap, so I asked the maintainers ([#624](https://github.com/uutils/util-linux/issues/624)), and the port now rejects values outside the documented ranges instead.
+
+## last
+
+`last` lists past logins, logouts, and reboots from the system's login records. My first two contributions here repaired its tests. Once GitHub's `ubuntu-latest` runners moved to Ubuntu 26.04, whose `/var/log/wtmp` holds no records, they failed CI on `main` and every pull request, and the ones that still passed did so without checking a single record; they now read a fixture file and fail without records. The third fixed `last` panicking on any system whose local time is behind UTC, which is most of the Americas.
+
+The hard part was that no test could see the panic: the test harness runs every command in UTC, where the offset is zero. `last` cast the local offset to an unsigned integer before adding it back to each timestamp, so UTC-6 became just short of 2^64 seconds and the addition overflowed. Converting with `to_offset` keeps the sign, and with the panic gone, `--time-format=iso` turned out to print `+-06:00`, because the format wrote a literal `+` before the hour. The new tests set `TZ` themselves, to zones behind, at, and ahead of UTC, and the times now match util-linux's `last`.
 
 ## lscpu
 
