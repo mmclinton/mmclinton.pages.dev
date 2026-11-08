@@ -1,7 +1,7 @@
 {% component contribution_state(state: string) -%}
 {%- if state == "merged" -%}merged
-{%- elif state == "open" -%}in review
-{%- elif state == "in-progress" -%}in progress
+{%- elif state == "open" -%}opened
+{%- elif state == "in-progress" -%}started
 {%- else -%}{{ throw(message="unknown contribution state: " ~ state) }}
 {%- endif -%}
 {%- endcomponent contribution_state %}

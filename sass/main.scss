@@ -724,7 +724,7 @@ blockquote {
 // Fixed tracks keep the PR and state columns aligned across every tool's list.
 .contrib-work li {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 2.6rem 4.6rem;
+  grid-template-columns: minmax(0, 1fr) 2.6rem 3.5rem;
   column-gap: 0.6rem;
   align-items: baseline;
 }
