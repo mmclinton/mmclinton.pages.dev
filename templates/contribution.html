@@ -28,7 +28,8 @@
       <a class="contrib-tool" href="#{{ t.name | slugify }}">{{ t.name }}</a>
       <ul class="contrib-work">
         {% for s in states %}{% for w in t.work %}{% if w.state == s %}
-        <li><span>{{ w.what | markdown(inline=true) | safe }}{% if w.pr %} <a href="{{ page.extra.upstream }}/pull/{{ w.pr }}" target="_blank" rel="noopener noreferrer">#{{ w.pr }}</a>{% endif %}</span>
+        <li><span>{{ w.what | markdown(inline=true) | safe }}</span>
+          {% if w.pr %}<a class="contrib-pr" href="{{ page.extra.upstream }}/pull/{{ w.pr }}" target="_blank" rel="noopener noreferrer">#{{ w.pr }}</a>{% endif %}
           <span class="contrib-state">{{<contribution_state state={w.state} />}}</span></li>
         {% endif %}{% endfor %}{% endfor %}
       </ul>

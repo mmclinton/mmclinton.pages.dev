@@ -699,8 +699,7 @@ blockquote {
 .contrib-list {
   margin-bottom: 1.6rem;
 }
-.contrib-list > li,
-.contrib-work li {
+.contrib-list > li {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -722,8 +721,19 @@ blockquote {
   margin-top: 0.25rem;
   font-size: 0.88rem;
 }
+// Fixed tracks keep the PR and state columns aligned across every tool's list.
+.contrib-work li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2.6rem 4.6rem;
+  column-gap: 0.6rem;
+  align-items: baseline;
+}
+.contrib-pr {
+  grid-column: 2;
+  font-variant-numeric: tabular-nums;
+}
 .contrib-state {
-  margin-left: auto;
+  grid-column: 3;
   color: var(--faint);
   font-size: 0.78rem;
   white-space: nowrap;
