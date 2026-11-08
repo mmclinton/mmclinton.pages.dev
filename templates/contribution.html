@@ -23,10 +23,7 @@
   {{ parts[0] | safe }}
   <p class="section-label">tools</p>
   <ul class="contrib-list">
-    {% for rank in states %}
-    {% for t in page.extra.tools %}
-    {% set tool_states = [w.state for w in t.work] %}
-    {% if [s for s in states if s in tool_states][0] == rank %}
+    {% for t in page.extra.tools | sort(attribute="name") %}
     <li>
       <a class="contrib-tool" href="#{{ t.name | slugify }}">{{ t.name }}</a>
       <ul class="contrib-work">
@@ -36,8 +33,6 @@
         {% endif %}{% endfor %}{% endfor %}
       </ul>
     </li>
-    {% endif %}
-    {% endfor %}
     {% endfor %}
   </ul>
   {{ parts[1] | safe }}
